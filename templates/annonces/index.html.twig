@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home page{% endblock %}
+
+{% block body %}
+    <h1> {{ pluralize(annonces|length, 'Annonce') }} </h1>
+
+        {% for annonce in annonces %}
+            <article>
+                <h2><a href=" {{ path('app_annonces_show', {id: annonce.id}) }} "> {{annonce.title}} </a></h2>
+                <p> {{annonce.description}} </p>
+                <p> {{annonce.price}} FCFA</p>
+            </article>       
+        {% endfor %}
+
+{% endblock %}
