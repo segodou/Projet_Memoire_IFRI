@@ -50,12 +50,12 @@ class Annonces
     private $bedrooms;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime_immutable" , options={"default": "CURRENT_TIMESTAMP"})
      */
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime_immutable" , options={"default": "CURRENT_TIMESTAMP"})
      */
     private $updatedAt;
 
@@ -166,7 +166,10 @@ class Annonces
      */
     public function updateTimestamps()
     {
-        $this->setCreatedAt(new DateTimeImmutable);
+        if($this->getCreatedAt() === null){
+            $this->setCreatedAt(new DateTimeImmutable);
+        }
+        
         $this->setUpdatedAt(new DateTimeImmutable);
     }
 

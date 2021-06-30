@@ -15,7 +15,7 @@ class AnnoncesController extends AbstractController
      */
     public function index(AnnoncesRepository $annonceRepository): Response
     {
-        $annonces = $annonceRepository->findAll();
+        $annonces = $annonceRepository->findBy([], ['createdAt' => 'DESC']);
         return $this->render('annonces/index.html.twig', compact('annonces'));
     }
 
