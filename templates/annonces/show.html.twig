@@ -13,6 +13,7 @@
         <p> {{annonce.bedrooms}} chambres </p>
     </article>
 
-    <a href=" {{path('app_home')}} ">Go Back</a>
+    <a href=" {{path('app_annonces_edit',{id: annonce.id} )}} ">Modifier</a> |
+    <a href=" {{path('app_home')}} ">Retour</a>
 
 {% endblock %}

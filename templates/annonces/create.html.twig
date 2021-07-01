@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'nouvelle annonce' %}
+
+{% block body %}
+    <h1>Création d'annonce</h1>
+
+        {{ form_start(monFormulaire) }}
+            {{ form_widget(monFormulaire) }}
+
+            <input type="submit" value="Créer annonce">
+
+        {{ form_end(monFormulaire) }}
+
+{% endblock %}
