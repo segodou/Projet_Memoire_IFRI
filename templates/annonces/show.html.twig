@@ -14,6 +14,10 @@
     </article>
 
     <a href=" {{path('app_annonces_edit',{id: annonce.id} )}} ">Modifier</a> |
+    <a href=" {{path('app_annonces_delete',{id: annonce.id} )}} " 
+    onclick="return confirm('Etes vous sûre de vouloir supprimer cette annonce ?');" >Supprimer</a>|
     <a href=" {{path('app_home')}} ">Retour</a>
+
+</form>
 
 {% endblock %}

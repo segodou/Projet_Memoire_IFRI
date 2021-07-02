@@ -74,4 +74,15 @@ class AnnoncesController extends AbstractController
             'monFormulaire' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/annonces/{id<[0-9]+>}/delete", name="app_annonces_delete")
+     */
+    public function delete(EntityManagerInterface $em, Annonces $annonce): Response
+    {
+        $em->remove($annonce);
+        $em->flush();
+
+        return $this->redirectToRoute('app_home');
+    }
 }
