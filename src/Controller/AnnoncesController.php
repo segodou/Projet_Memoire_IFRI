@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Annonces;
+use App\Form\AnnoncesType;
 use App\Repository\AnnoncesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,15 +28,7 @@ class AnnoncesController extends AbstractController
     public function create(Request $request, EntityManagerInterface $em): Response
     {
         $annonce = new Annonces;
-        $form = $this->createFormBuilder($annonce)
-            ->add('title')
-            ->add('description')
-            ->add('price')
-            ->add('surface')
-            ->add('rooms')
-            ->add('bedrooms')
-            ->getForm();
-        ;
+        $form = $this->createForm(AnnoncesType::class, $annonce);
 
         $form->handleRequest($request);
 
@@ -66,15 +59,7 @@ class AnnoncesController extends AbstractController
      */
     public function edit(Request $request, EntityManagerInterface $em, Annonces $annonce): Response
     {
-        $form = $this->createFormBuilder($annonce)
-            ->add('title')
-            ->add('description')
-            ->add('price')
-            ->add('surface')
-            ->add('rooms')
-            ->add('bedrooms')
-            ->getForm();
-        ;
+        $form = $this->createForm(AnnoncesType::class, $annonce);
 
         $form->handleRequest($request);
 
@@ -83,7 +68,6 @@ class AnnoncesController extends AbstractController
 
             return $this->redirectToRoute('app_home');
         }
-
 
         return $this->render('annonces/edit.html.twig',  [
             'annonce' => $annonce,
