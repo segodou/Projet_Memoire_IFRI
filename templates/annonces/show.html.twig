@@ -4,20 +4,38 @@
 
 {% block body %}
 
-    <article>
-        <h1> {{annonce.title}} </h1>
-        <p> {{annonce.description}} </p>
-        <p> {{annonce.price}} FCFA</p>
-        <p> {{annonce.surface}} m2</p>
-        <p> {{annonce.rooms}} pièces</p>
-        <p> {{annonce.bedrooms}} chambres </p>
-    </article>
+	<article>
+		<h1>
+			{{annonce.title}}
+		</h1>
+		<p>
+			{{annonce.description}}
+		</p>
+		<p>
+			{{annonce.price}}
+			FCFA</p>
+		<p>
+			{{annonce.surface}}
+			m2</p>
+		<p>
+			{{annonce.rooms}}
+			pièces</p>
+		<p>
+			{{annonce.bedrooms}}
+			chambres
+		</p>
+	</article>
 
-    <a href=" {{path('app_annonces_edit',{id: annonce.id} )}} ">Modifier</a> |
-    <a href=" {{path('app_annonces_delete',{id: annonce.id} )}} " 
-    onclick="return confirm('Etes vous sûre de vouloir supprimer cette annonce ?');" >Supprimer</a>|
-    <a href=" {{path('app_home')}} ">Retour</a>
+	<a href=" {{path('app_annonces_edit',{id: annonce.id} )}} ">Modifier</a>
+	|
+	{# <a href=" {{path('app_annonces_delete',{id: annonce.id} )}} " 
+	    onclick="return confirm('Etes vous sûre de vouloir supprimer cette annonce ?');" >Supprimer</a>#}
+	<form action=" {{path('app_annonces_delete',{id: annonce.id} )}}" method="post" style="display : inline-block;" 
+    onsubmit="return confirm('Etes vous sûre de vouloir supprimer cette annonce ?')">
+		<input type="hidden" name="_token" value="{{csrf_token('deletion' ~ annonce.id)}}">
+		<button>Supprimer</button>
 
-</form>
+	</form> |
+	<a href=" {{path('app_home')}} ">Retour</a>
 
 {% endblock %}

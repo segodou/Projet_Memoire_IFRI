@@ -18,7 +18,10 @@ class AnnoncesController extends AbstractController
      */
     public function index(AnnoncesRepository $annonceRepository): Response
     {
-        $annonces = $annonceRepository->findBy([], ['createdAt' => 'DESC']);
+        $annonces = $annonceRepository->findBy(
+                    ['statusAnnonce' => '0'], 
+                    ['createdAt' => 'DESC']
+                );
         return $this->render('annonces/index.html.twig', compact('annonces'));
     }
 
@@ -78,10 +81,13 @@ class AnnoncesController extends AbstractController
     /**
      * @Route("/annonces/{id<[0-9]+>}/delete", name="app_annonces_delete")
      */
-    public function delete(EntityManagerInterface $em, Annonces $annonce): Response
-    {
-        $em->remove($annonce);
-        $em->flush();
+    public function delete(Request $request, EntityManagerInterface $em, Annonces $annonce): Response
+    {   
+       if ($this->isCsrfTokenValid('deletion' . $annonce->getId(), $request->request->get('_token'))) {
+            $annonce->setStatusAnnonce("1");
+            $em->persist($annonce);
+            $em->flush();
+       }
 
         return $this->redirectToRoute('app_home');
     }

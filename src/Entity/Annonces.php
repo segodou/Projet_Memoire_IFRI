@@ -52,6 +52,11 @@ class Annonces
      */
     private $bedrooms;
 
+    /**
+     * @ORM\Column(type="boolean" , options={"default": "0"})
+     */
+    private $statusAnnonce;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -125,6 +130,18 @@ class Annonces
     public function setBedrooms(int $bedrooms): self
     {
         $this->bedrooms = $bedrooms;
+
+        return $this;
+    }
+
+    public function getStatusAnnonce(): ?bool
+    {
+        return $this->statusAnnonce;
+    }
+
+    public function setStatusAnnonce(bool $statusAnnonce): self
+    {
+        $this->statusAnnonce = $statusAnnonce;
 
         return $this;
     }

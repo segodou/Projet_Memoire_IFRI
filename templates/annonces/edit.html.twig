@@ -5,11 +5,6 @@
 {% block body %}
     <h1>Modifier annonce#{{annonce.id}}</h1>
 
-        {{ form_start(monFormulaire) }}
-            {{ form_widget(monFormulaire) }}
-
-            <input type="submit" value="Modifier l'annonce" formnovalidate>
-
-        {{ form_end(monFormulaire) }}
+        {{include('annonces/_form.html.twig',  {submitButtonText: 'Modifier l\'annonce'})}}
 
 {% endblock %}
