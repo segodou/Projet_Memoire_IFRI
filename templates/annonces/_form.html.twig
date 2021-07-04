@@ -1,6 +1,7 @@
 {{ form_start(monFormulaire) }}
     {{ form_widget(monFormulaire) }}
 
-    <input type="submit" value="{{submitButtonText ?? 'Créer l\'annonce'}}" formnovalidate>
+    <input type="submit" value="{{submitButtonText ?? 'Créer l\'annonce'}}" formnovalidate 
+    class="btn btn-primary btn-block">
 
 {{ form_end(monFormulaire) }}

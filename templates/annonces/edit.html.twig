@@ -3,8 +3,12 @@
 {% block title 'Editer annonce#' ~ annonce.id %}
 
 {% block body %}
-    <h1>Modifier annonce#{{annonce.id}}</h1>
-
-        {{include('annonces/_form.html.twig',  {submitButtonText: 'Modifier l\'annonce'})}}
+<div class="row">
+	<div class="col-md-6 mx-auto">
+		<h1>Modifier annonce#{{annonce.id}}</h1>
+            
+		{{include('annonces/_form.html.twig',  {submitButtonText: 'Modifier l\'annonce'})}}
+    </div>
+</div>
 
 {% endblock %}

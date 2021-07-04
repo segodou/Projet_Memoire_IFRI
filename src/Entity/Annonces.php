@@ -26,7 +26,7 @@ class Annonces
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     * @Assert\Length(min=10)
+     * @Assert\Length(min=5)
      */
     private $title;
 
@@ -76,7 +76,7 @@ class Annonces
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
 
@@ -88,7 +88,7 @@ class Annonces
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
@@ -100,7 +100,7 @@ class Annonces
         return $this->price;
     }
 
-    public function setPrice(string $price): self
+    public function setPrice(?string $price): self
     {
         $this->price = $price;
 
@@ -112,7 +112,7 @@ class Annonces
         return $this->surface;
     }
 
-    public function setSurface(int $surface): self
+    public function setSurface(?int $surface): self
     {
         $this->surface = $surface;
 
@@ -124,7 +124,7 @@ class Annonces
         return $this->rooms;
     }
 
-    public function setRooms(int $rooms): self
+    public function setRooms(?int $rooms): self
     {
         $this->rooms = $rooms;
 
@@ -136,7 +136,7 @@ class Annonces
         return $this->bedrooms;
     }
 
-    public function setBedrooms(int $bedrooms): self
+    public function setBedrooms(?int $bedrooms): self
     {
         $this->bedrooms = $bedrooms;
 
