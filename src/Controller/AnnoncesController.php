@@ -36,8 +36,11 @@ class AnnoncesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $annonce->setStatusAnnonce("0");
             $em->persist($annonce);
             $em->flush();
+
+            $this->addFlash('success', 'L\'annonce est créé avec succès!');
 
             return $this->redirectToRoute('app_home');
         }
@@ -69,6 +72,8 @@ class AnnoncesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
 
+            $this->addFlash('success', 'L\'annonce est modifiée avec succès!');
+
             return $this->redirectToRoute('app_home');
         }
 
@@ -87,6 +92,8 @@ class AnnoncesController extends AbstractController
             $annonce->setStatusAnnonce("1");
             $em->persist($annonce);
             $em->flush();
+
+            $this->addFlash('info', 'L\'annonce est supprimée avec succès!');
        }
 
         return $this->redirectToRoute('app_home');
