@@ -6,6 +6,7 @@ use App\Entity\Traits\Timestampable;
 use App\Repository\AnnoncesRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AnnoncesRepository::class)
@@ -24,31 +25,39 @@ class Annonces
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(min=10)
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
+     * @Assert\Length(min=10)
      */
     private $description;
 
     /**
      * @ORM\Column(type="bigint")
+     * @Assert\NotBlank
      */
     private $price;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank
      */
     private $surface;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank
      */
     private $rooms;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank
      */
     private $bedrooms;
 
