@@ -73,6 +73,7 @@ class Annonces
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
      * @Vich\UploadableField(mapping="annonce_image", fileNameProperty="imageName")
+     * @Assert\NotNull(message="Please upload a file")
      * @Assert\Image(maxSize="8M")
      * 
      * @var File|null

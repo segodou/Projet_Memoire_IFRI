@@ -20,6 +20,7 @@ class AnnoncesType extends AbstractType
                 'delete_label' => 'Delete',
                 'download_label' => 'Download',
                 'download_uri' => false,
+                'imagine_pattern' => 'squared_thumbnail_small'
             ])
             ->add('title')
             ->add('description')
