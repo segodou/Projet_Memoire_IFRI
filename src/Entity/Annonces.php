@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Entity\Traits\Timestampable;
 use App\Repository\AnnoncesRepository;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
@@ -70,20 +72,14 @@ class Annonces
     private $statusAnnonce;
 
     /**
-     * NOTE: This is not a mapped field of entity metadata, just a simple property.
-     * 
-     * @Vich\UploadableField(mapping="annonce_image", fileNameProperty="imageName")
-     * @Assert\NotNull(message="Please upload a file")
-     * @Assert\Image(maxSize="8M")
-     * 
-     * @var File|null
+     * @ORM\OneToMany(targetEntity=Images::class, mappedBy="annonces", orphanRemoval=true, cascade={"persist"})
      */
-    private $imageFile;
+    private $images;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $imageName;
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -175,34 +171,34 @@ class Annonces
     }
 
     /**
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
+     * @return Collection|Images[]
      */
-    public function setImageFile(?File $imageFile = null): void
+    public function getImages(): Collection
     {
-        $this->imageFile = $imageFile;
+        return $this->images;
+    }
 
-        if (null !== $imageFile) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->setUpdatedAt(new \DateTimeImmutable());
+    public function addImage(Images $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setAnnonces($this);
         }
-    }
-
-    public function getImageFile(): ?File
-    {
-        return $this->imageFile;
-    }
-
-    public function getImageName(): ?string
-    {
-        return $this->imageName;
-    }
-
-    public function setImageName(?string $imageName): self
-    {
-        $this->imageName = $imageName;
 
         return $this;
     }
+
+    public function removeImage(Images $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getAnnonces() === $this) {
+                $image->setAnnonces(null);
+            }
+        }
+
+        return $this;
+    }
+
 
 }

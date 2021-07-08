@@ -4,11 +4,15 @@
 
 {% block body %}
 <div class="row">
-	<div class="col-md-6 mx-auto">
+	<div class="col-md-8 mx-auto">
 		<h1>Modifier annonce#{{annonce.id}}</h1>
             
 		{{include('annonces/_form.html.twig',  {submitButtonText: 'Modifier l\'annonce'})}}
     </div>
 </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/images.js') }}"></script>
 {% endblock %}

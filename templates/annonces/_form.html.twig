@@ -1,7 +1,24 @@
 {{ form_start(monFormulaire) }}
     {{ form_widget(monFormulaire) }}
 
+     {# Vérifier si la route est "annonces_edit" on affiche les images #}
+     {% if app.request.attributes.get('_route') == 'app_annonces_edit' %}
+            <h2>Images</h2>
+            <div class="row">
+                {% for image in annonce.images %}
+                    <div class="col-md-4 flex-column">
+                        <img src="{{ asset('/uploads/annonces/' ~ image.name) }}" alt="Image" style="width:200px; height:auto;" 
+                        class= "rounded shadow"> 
+                    {#  <img src="{{ vich_uploader_asset(image)|imagine_filter('article')  }}" alt="Image"> #}
+                        <a href="{{ path('annonces_delete_image', {'id': image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">
+                            <i class="bi bi-trash-fill" width="50" height="50" ></i>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    
     <input type="submit" value="{{submitButtonText ?? 'Créer l\'annonce'}}" formnovalidate 
-    class="btn btn-primary btn-block">
+    class="btn btn-primary btn-block mt-3">
 
 {{ form_end(monFormulaire) }}

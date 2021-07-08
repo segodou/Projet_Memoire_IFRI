@@ -3,14 +3,53 @@
 {% block title %}Home page{% endblock %}
 
 {% block body %}
-    <h1> {{ pluralize(annonces|length, 'Annonce') }} </h1>
+    {% if annonces|length > 0 %}
+        <h1 class="mb-4 text-center text-muted"> {{ pluralize(annonces|length, 'Annonce') }} </h1>
+        
+        {% for row in annonces|batch(3) %}
+            <div class="row mt-5">
+            {% for annonce in row %}
+                <div class="col-md-4">
+                    <article class="annonce bg-white rounded shadow">
+                        {% if annonce.images|length > 1 %}
+                            <div id="caroussel">
+                                <div class="images">
+                                    {% for image in annonce.images %}
+                                        <a href=" {{ path('app_annonces_show', {id: annonce.id}) }} ">
+                                            <img src="{{ asset('/uploads/annonces/' ~ image.name) }}" 
+                                            alt="{{image.name}}" style="width:350px; height:230px;" class="rounded-top"> 
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="mw-100 overflow-hidden">
+                                {% for image in annonce.images %}
+                                    <a href=" {{ path('app_annonces_show', {id: annonce.id}) }} ">
+                                        <img src="{{ asset('/uploads/annonces/' ~ image.name) }}" 
+                                        alt="{{image.name}}" style="width:350px; height:230px;" class="w-100 rounded-top"> 
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <h2 class="h2 pl-3 pb-3 pt-3"><a href=" {{ path('app_annonces_show', {id: annonce.id}) 
+                        }} " class="text-secondary text-decoration-none"> {{annonce.title}} </a></h2>
+                        {# annonce.descrition a remplacé plutard par annonce.type#}
+                        <p class="h3 pl-3 pb-1 text-muted"> {{annonce.price}} FCFA</p>
+                        <p class="pl-3 pb-3 text-muted"><small>Submitted {{annonce.createdAt|ago}} </small></p>
 
-        {% for annonce in annonces %}
-            <article>
-                <h2><a href=" {{ path('app_annonces_show', {id: annonce.id}) }} "> {{annonce.title}} </a></h2>
-                <p> {{annonce.description}} </p>
-                <p> {{annonce.price}} FCFA</p>
-            </article>       
+                    </article>
+                </div>             
+            {% endfor %}
+            </div>
         {% endfor %}
+
+    {% else %}
+            <p class="h1 mt-5 text-center">Aucune annonce disponible. 
+                <a href=" {{ path('app_annonces_create') }} "> 
+                    Soyez le premier à publier une annonce
+                </a>
+            </p>
+    {% endif %}
 
 {% endblock %}

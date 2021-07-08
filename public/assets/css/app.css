@@ -1,0 +1,63 @@
+html, body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.alert{
+    padding: 10px;
+    color: white;
+    text-align: center;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+}
+
+.alert-success{
+    background-color: green;
+}
+
+.alert-error{
+    background-color: red;
+}
+
+.alert-info{
+    background-color: blue;
+}
+
+.images{
+    display: flex;
+    animation-duration: 20s;
+    animation-name: mesImages;
+    animation-iteration-count: infinite;
+}
+
+#caroussel{
+    width: 350px;
+    height: 230px;
+    overflow: hidden;
+}
+
+@keyframes mesImages {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-350px);
+    }
+    50% {
+        transform: translateX(-700px);
+    }
+    75% {
+        transform: translateX(-1050px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.annonce img:hover {
+    transform: scale(1.075);
+}
+
+.annonce img {
+    transition: 0.4s ease-out;
+}
