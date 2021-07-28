@@ -30,17 +30,30 @@
 			</div>
 
 			<div class='col-md-4'>
-				<h2 class="h2 pl-3 pb-3 pt-3"><a href=" {{ path('app_annonces_show', {id: annonce.id}) 
+				<h2 class="h2 pl-3 pt-3"><a href=" {{ path('app_annonces_show', {id: annonce.id}) 
 					}} " class="text-secondary text-decoration-none font-weight-bold"> {{annonce.title}} </a></h2>
-					{# annonce.descrition a remplacé plutard par annonce.type#}
+				<p class="h2 pl-3 pb-3 text-secondary text-decoration-none">{{annonce.rooms}} pièces - {{annonce.surface}} m2</p>
 				<p class="h3 pl-3 pb-1 font-weight-bold"> {{annonce.price|number_format(0, '', ' ')}} FCFA</p>
+				<p class="pl-3 pb-3 text-muted">
+				Disponible à : <br/>
+					Département : {{annonce.quartier.arrondissement.commune.departement}} <br/>
+					Commune : {{annonce.quartier.arrondissement.commune.departement}} <br/>
+					Arrondissement : {{annonce.quartier.arrondissement.commune.departement}} <br/>
+					Quartier : {{annonce.quartier}} <br/>
+				</p>
 				<p class="pl-3 pb-3 text-muted"><small>Submitted {{annonce.createdAt|ago}} </small></p>
 				<p class="pl-3 pb-3"><a href="#" class=" btn btn-primary">Contacter l'annonceur</a></p>
-				
-				
+
+				<p class="pl-3 pb-3">
+					<a href="http://maps.google.com?q={{annonce.location}}">Cliquer ici</a>
+					pour avoir un itinéraire vers le bien.
+				</p>
+						
 			</div>
 		</div>
+
 		<p class="pl-3 pb-3 mt-4">{{annonce.description|nl2br}}</p>
+
 		<div class="row pl-3 pb-3 ">
 			<div class="col-md-8">
 				<h2>Caractéristiques</h2>

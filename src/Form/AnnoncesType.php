@@ -31,6 +31,8 @@ class AnnoncesType extends AbstractType
             ->add('surface')
             ->add('rooms')
             ->add('bedrooms')
+            ->add('location')
+            ->add('sold')
             // On ajoute le champ "images" dans le formulaire
             // Il n'est pas lié à la base de données (mapped à false)
             ->add('images', FileType::class, [
