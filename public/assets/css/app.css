@@ -61,3 +61,13 @@ html, body {
 .annonce img {
     transition: 0.4s ease-out;
 }
+
+.images_show{
+    display: flex;
+}
+
+#caroussel_show{
+    width: 730px;
+    height: 457px;
+    overflow: auto;
+}

@@ -147,7 +147,8 @@ class AnnoncesController extends AbstractController
     /**
      * @Route("/supprime/image/{id}", name="annonces_delete_image", methods={"DELETE"})
      */
-    public function deleteImage(Images $image, Request $request){
+    public function deleteImage(Images $image, Request $request): Response
+    {
         $data = json_decode($request->getContent(), true);
 
         // On vérifie si le token est valide
@@ -167,5 +168,13 @@ class AnnoncesController extends AbstractController
         }else{
             return new JsonResponse(['error' => 'Token Invalide'], 400);
         }
+    }
+
+    /**
+     * @Route("/caroussel", name="caroussel")
+     */
+    public function carousel(): Response
+    {
+        return $this->render('annonces/carou.html.twig');
     }
 }

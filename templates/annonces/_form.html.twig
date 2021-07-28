@@ -1,4 +1,16 @@
 {{ form_start(monFormulaire) }}
+
+    <div class="row">
+        <div class="col-md-4">{{ form_row(monFormulaire.title) }}</div>
+        <div class="col-md-4">{{ form_row(monFormulaire.surface) }}</div>
+        <div class="col-md-4">{{ form_row(monFormulaire.price) }}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">{{ form_row(monFormulaire.type) }}</div>
+        <div class="col-md-4">{{ form_row(monFormulaire.rooms) }}</div>
+        <div class="col-md-4">{{ form_row(monFormulaire.bedrooms) }}</div>
+    </div>
+
     {{ form_widget(monFormulaire) }}
 
      {# Vérifier si la route est "annonces_edit" on affiche les images #}

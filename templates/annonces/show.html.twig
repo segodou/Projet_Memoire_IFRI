@@ -3,38 +3,76 @@
 {% block title annonce.title %}
 
 {% block body %}
+	<article class="annonce bg-white rounded shadow">
+		<div class="row">
+			<div class="col-md-8">
+					{% if annonce.images|length > 1 %}
+						<div id="caroussel_show">
+							<div class="images_show" class="mw-100 overflow-hidden">
+								{% for image in annonce.images %}
+									<a href=" {{ path('app_annonces_show', {id: annonce.id}) }} ">
+										<img src="{{ asset('/uploads/annonces/' ~ image.name) }}" 
+										alt="{{image.name}}" style="width:730px; height:457px;" class=" rounded-top"> 
+									</a>
+								{% endfor %}
+							</div>
+						</div>
+					{% else %}
+						<div class="mw-100 overflow-hidden">
+							{% for image in annonce.images %}
+								<a href=" {{ path('app_annonces_show', {id: annonce.id}) }} ">
+									<img src="{{ asset('/uploads/annonces/' ~ image.name) }}" 
+									alt="{{image.name}}" class="w-100 rounded-top"> 
+								</a>
+							{% endfor %}
+						</div>
+					{% endif %}
+			</div>
 
-	<article>
-		<h1>
-			{{annonce.title}}
-		</h1>
-		<p>
-			{{annonce.description}}
-		</p>
-		<p>
-			{{annonce.price}}
-			FCFA</p>
-		<p>
-			{{annonce.surface}}
-			m2</p>
-		<p>
-			{{annonce.rooms}}
-			pièces</p>
-		<p>
-			{{annonce.bedrooms}}
-			chambres
-		</p>
-	</article>
+			<div class='col-md-4'>
+				<h2 class="h2 pl-3 pb-3 pt-3"><a href=" {{ path('app_annonces_show', {id: annonce.id}) 
+					}} " class="text-secondary text-decoration-none font-weight-bold"> {{annonce.title}} </a></h2>
+					{# annonce.descrition a remplacé plutard par annonce.type#}
+				<p class="h3 pl-3 pb-1 font-weight-bold"> {{annonce.price|number_format(0, '', ' ')}} FCFA</p>
+				<p class="pl-3 pb-3 text-muted"><small>Submitted {{annonce.createdAt|ago}} </small></p>
+				<p class="pl-3 pb-3"><a href="#" class=" btn btn-primary">Contacter l'annonceur</a></p>
+				
+				
+			</div>
+		</div>
+		<p class="pl-3 pb-3 mt-4">{{annonce.description|nl2br}}</p>
+		<div class="row pl-3 pb-3 ">
+			<div class="col-md-8">
+				<h2>Caractéristiques</h2>
+				<table class="table table striped">
+					<tr>
+						<td>Surface habitable</td>
+						<td>{{annonce.surface}} m2</td>
+					</tr>
+					<tr>
+						<td>Pièces</td>
+						<td>{{annonce.rooms}}</td>
+					</tr>
+					<tr>
+						<td>Chambres</td>
+						<td>{{annonce.bedrooms}}</td>
+					</tr>
+					<tr>
+						<td>Type de bien</td>
+						<td>{{annonce.typeBien}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
 
-	<a href=" {{path('app_annonces_edit',{id: annonce.id} )}} ">Modifier</a>
-	|
-	{# <a href=" {{path('app_annonces_delete',{id: annonce.id} )}} " 
-	    onclick="return confirm('Etes vous sûre de vouloir supprimer cette annonce ?');" >Supprimer</a>#}
-	<form action=" {{path('app_annonces_delete',{id: annonce.id} )}}" method="post" style="display : inline-block;" 
-    onsubmit="return confirm('Etes vous sûre de vouloir supprimer cette annonce ?')">
-		<input type="hidden" name="_token" value="{{csrf_token('deletion' ~ annonce.id)}}">
-		<button>Supprimer</button>
-
-	</form>
+			<div class="pl-3 pb-3">
+				<a href=" {{path('app_annonces_edit',{id: annonce.id} )}} " class="btn btn-light">Modifier</a>
+				<form action=" {{path('app_annonces_delete',{id: annonce.id} )}}" method="post" style="display : inline-block;" 
+					onsubmit="return confirm('Etes vous sûre de vouloir supprimer cette annonce ?')">
+					<input type="hidden" name="_token" value="{{csrf_token('deletion' ~ annonce.id)}}">
+					<button class="btn btn-light">Supprimer</button>
+				</form>
+			</div>
+	</article>	
 
 {% endblock %}

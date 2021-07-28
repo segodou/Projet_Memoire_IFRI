@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'carousel'%}
+
+{% block body %}
+	<div class="slider">
+        <div class="slider-items">
+            <div class="item active">
+                <img src="{{ asset('/uploads/annonces/3e2cedf07632c75060c940f75aabde27.jpg') }}"  alt="">
+                <div class="caption"></div>
+            </div>
+            <div class="item">
+                <img src="{{ asset('/uploads/annonces/8a7ebbe08d1a62f8ebc0addfb2add4fa.jpg') }}"  alt="">
+            <div class="caption"></div>
+            </div>
+            <div class="item">
+                <img src="{{ asset('/uploads/annonces/030b541029358f2ec66a079de772507b.jpg') }}"  alt="">
+            <div class="caption"></div>
+            </div>
+        </div>
+        <!-- slider controls -->
+        <div class="left-slide"> < </div>
+        <div class="right-slide"> > </div>
+        <!-- slider controls -->
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('assets/js/slider.js') }}"></script>
+{% endblock %}

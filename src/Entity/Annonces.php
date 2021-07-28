@@ -21,6 +21,22 @@ class Annonces
 {
     use Timestampable;
 
+    const TYPE = [
+        0 => 'studio',
+        1 => 'Appartement T1',
+        2 => 'Appartement T2',
+        3 => 'Appartement T3',
+        4 => 'Appartement T4 et +',
+        5 => 'Duplex',
+        6 => 'Maison 2 pièces',
+        7 => 'Maison 3 pièces',
+        8 => 'Maison 4 pièces et +',
+        9 => 'Terrain',
+        10 => 'Résidence Senior',
+        11 => 'Résidence étudiante',
+        12 => 'Résidence de tourisme',
+    ];
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -73,8 +89,31 @@ class Annonces
 
     /**
      * @ORM\OneToMany(targetEntity=Images::class, mappedBy="annonces", orphanRemoval=true, cascade={"persist"})
+     * @Assert\NotBlank
      */
     private $images;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Quartier::class, inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank
+     */
+    private $quartier;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $location;
+
+    /**
+     * @ORM\Column(type="boolean", options={"default":false})
+     */
+    private $sold;
 
     public function __construct()
     {
@@ -196,6 +235,59 @@ class Annonces
                 $image->setAnnonces(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getType(): ?int
+    {
+        return $this->type;
+    }
+
+    public function setType(int $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getTypeBien(): ?string
+    {
+        return self::TYPE[$this->type];
+    }
+
+    public function getQuartier(): ?Quartier
+    {
+        return $this->quartier;
+    }
+
+    public function setQuartier(?Quartier $quartier): self
+    {
+        $this->quartier = $quartier;
+
+        return $this;
+    }
+
+    public function getLocation(): ?string
+    {
+        return $this->location;
+    }
+
+    public function setLocation(string $location): self
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    public function getSold(): ?bool
+    {
+        return $this->sold;
+    }
+
+    public function setSold(bool $sold): self
+    {
+        $this->sold = $sold;
 
         return $this;
     }
