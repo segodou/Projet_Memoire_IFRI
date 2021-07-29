@@ -13,7 +13,7 @@
                     <article class="annonce bg-white rounded shadow">
                         {% if annonce.images|length > 1 %}
                             <div id="caroussel">
-                                <div class="images">
+                                <div class="images mw-100 rounded-top">
                                     {% for image in annonce.images %}
                                         <a href=" {{ path('app_annonces_show', {id: annonce.id}) }} ">
                                             <img src="{{ asset('/uploads/annonces/' ~ image.name) }}" 
@@ -23,11 +23,11 @@
                                 </div>
                             </div>
                         {% else %}
-                            <div class="mw-100 overflow-hidden">
+                            <div class="mw-100 rounded-top overflow-hidden">
                                 {% for image in annonce.images %}
                                     <a href=" {{ path('app_annonces_show', {id: annonce.id}) }} ">
                                         <img src="{{ asset('/uploads/annonces/' ~ image.name) }}" 
-                                        alt="{{image.name}}" style="width:350px; height:230px;" class="w-100 rounded-top"> 
+                                        alt="{{image.name}}" style="width:350px; height:230px;" class="w-100 "> 
                                     </a>
                                 {% endfor %}
                             </div>

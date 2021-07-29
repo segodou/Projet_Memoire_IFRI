@@ -8,21 +8,21 @@
 			<div class="col-md-8">
 					{% if annonce.images|length > 1 %}
 						<div id="caroussel_show">
-							<div class="images_show" class="mw-100 overflow-hidden">
+							<div class="images_show" class="mw-100 rounded-top overflow-hidden">
 								{% for image in annonce.images %}
 									<a href=" {{ path('app_annonces_show', {id: annonce.id}) }} ">
 										<img src="{{ asset('/uploads/annonces/' ~ image.name) }}" 
-										alt="{{image.name}}" style="width:730px; height:457px;" class=" rounded-top"> 
+										alt="{{image.name}}" style="width:730px; height:457px;"> 
 									</a>
 								{% endfor %}
 							</div>
 						</div>
 					{% else %}
-						<div class="mw-100 overflow-hidden">
+						<div class="mw-100 rounded-top overflow-hidden">
 							{% for image in annonce.images %}
 								<a href=" {{ path('app_annonces_show', {id: annonce.id}) }} ">
 									<img src="{{ asset('/uploads/annonces/' ~ image.name) }}" 
-									alt="{{image.name}}" class="w-100 rounded-top"> 
+									alt="{{image.name}}" class="w-100 "> 
 								</a>
 							{% endfor %}
 						</div>
