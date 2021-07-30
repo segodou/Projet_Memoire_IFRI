@@ -102,7 +102,7 @@ class Annonces
 
     /**
      * @ORM\ManyToOne(targetEntity=Quartier::class, inversedBy="annonces")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, referencedColumnName="id")
      * @Assert\NotBlank
      */
     private $quartier;
@@ -116,6 +116,12 @@ class Annonces
      * @ORM\Column(type="boolean", options={"default":false})
      */
     private $sold;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=false, referencedColumnName="id")
+     */
+    private $user;
 
     public function __construct()
     {
@@ -290,6 +296,18 @@ class Annonces
     public function setSold(bool $sold): self
     {
         $this->sold = $sold;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

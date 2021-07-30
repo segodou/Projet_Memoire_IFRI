@@ -10,35 +10,32 @@
 						<div id="caroussel_show">
 							<div class="images_show" class="mw-100 rounded-top overflow-hidden">
 								{% for image in annonce.images %}
-									<a href=" {{ path('app_annonces_show', {id: annonce.id}) }} ">
 										<img src="{{ asset('/uploads/annonces/' ~ image.name) }}" 
 										alt="{{image.name}}" style="width:730px; height:457px;"> 
-									</a>
 								{% endfor %}
 							</div>
 						</div>
 					{% else %}
 						<div class="mw-100 rounded-top overflow-hidden">
 							{% for image in annonce.images %}
-								<a href=" {{ path('app_annonces_show', {id: annonce.id}) }} ">
 									<img src="{{ asset('/uploads/annonces/' ~ image.name) }}" 
 									alt="{{image.name}}" class="w-100 "> 
-								</a>
 							{% endfor %}
 						</div>
 					{% endif %}
 			</div>
 
 			<div class='col-md-4'>
-				<h2 class="h2 pl-3 pt-3"><a href=" {{ path('app_annonces_show', {id: annonce.id}) 
-					}} " class="text-secondary text-decoration-none font-weight-bold"> {{annonce.title}} </a></h2>
+				<h2 class="h2 pl-3 pt-3 text-secondary text-decoration-none font-weight-bold">
+					 {{annonce.title}}
+				</h2>
 				<p class="h2 pl-3 pb-3 text-secondary text-decoration-none">{{annonce.rooms}} pièces - {{annonce.surface}} m2</p>
 				<p class="h3 pl-3 pb-1 font-weight-bold"> {{annonce.price|number_format(0, '', ' ')}} FCFA</p>
 				<p class="pl-3 pb-3 text-muted">
 				Disponible à : <br/>
 					Département : {{annonce.quartier.arrondissement.commune.departement}} <br/>
-					Commune : {{annonce.quartier.arrondissement.commune.departement}} <br/>
-					Arrondissement : {{annonce.quartier.arrondissement.commune.departement}} <br/>
+					Commune : {{annonce.quartier.arrondissement.commune}} <br/>
+					Arrondissement : {{annonce.quartier.arrondissement}} <br/>
 					Quartier : {{annonce.quartier}} <br/>
 				</p>
 				<p class="pl-3 pb-3 text-muted"><small>Submitted {{annonce.createdAt|ago}} </small></p>
