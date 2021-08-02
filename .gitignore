@@ -18,9 +18,9 @@
 .phpunit.result.cache
 ###< phpunit/phpunit ###
 
-###> custom env vars ###
+###> custom app ignores ###
 /public/uploads/
-###< end custom env vars ###
+###< end custom app ignores ###
 
 ###> liip/imagine-bundle ###
 /public/media/cache/
