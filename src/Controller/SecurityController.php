@@ -13,10 +13,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    /**
-     * @Route("/register", name="app_register")
-     */
-    public function register(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $em): Response
+    /*public function register(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(UserRegistrationFormType::class);
 
@@ -42,7 +39,7 @@ class SecurityController extends AbstractController
         return $this->render('security/register.html.twig', [
             'registrationForm' => $form->createView()
         ]);
-    }
+    } */
 
 
     /**

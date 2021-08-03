@@ -6,6 +6,7 @@ use App\Entity\Annonces;
 use App\Entity\Images;
 use App\Form\AnnoncesType;
 use App\Repository\AnnoncesRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -64,6 +65,7 @@ class AnnoncesController extends AbstractController
              }
  
             $em = $this->getDoctrine()->getManager();
+            $annonce->setUser($this->getUser());
             $em->persist($annonce);
             $em->flush();
 
