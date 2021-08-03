@@ -5,9 +5,9 @@
 {% block body %}
     <div class="row">
         <div class="col-md-6 mx-auto">
-            {% for flashError in app.flashes('verify_email_error') %}
+           {# {% for flashError in app.flashes('verify_email_error') %}
                 <div class="alert alert-error rounded mb-3" role="alert">{{ flashError }}</div>
-            {% endfor %}
+            {% endfor %} #}
 
             <h1 class="my-5 text-center">Créer un compte</h1>
 
@@ -33,9 +33,11 @@
                 {{ form_row(registrationForm.plainPassword, {
                     label: 'Password'
                 }) }}
-                {{ form_row(registrationForm.agreeTerms) }}
+                {{ form_row(registrationForm.agreeTerms, {
+                    label: 'J\'accepte la politique de confidentialité et les conditions de service'
+                }) }}
 
-                <button type="submit" class="btn btn-primary btn-lg btn-block">S'inscrire</button>
+                <button type="submit" class="btn btn-primary btn-lg btn-block" formnovalidate>S'inscrire</button>
 
                 <p class="mt-5 mb-3 text-center text-muted">Vous aviez déjà un compte? 
                     <a href="{{ path('app_login') }}">Se connecter</a>

@@ -13,35 +13,6 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    /*public function register(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $em): Response
-    {
-        $form = $this->createForm(UserRegistrationFormType::class);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $user = $form->getData();
-
-            $plainPassword = $form['plainPassword']->getData();
-
-            $user->setPassword($passwordHasher->hashPassword($user, $plainPassword));
-
-            $em->persist($user);
-            $em->flush();
-
-            $this->addFlash('success', 'User successfully created!');
-
-            return $this->redirectToRoute('app_home');
-
-
-        }
-
-        return $this->render('security/register.html.twig', [
-            'registrationForm' => $form->createView()
-        ]);
-    } */
-
-
     /**
      * @Route("/login", name="app_login")
      */
@@ -69,4 +40,33 @@ class SecurityController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
+        /*public function register(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $em): Response
+    {
+        $form = $this->createForm(UserRegistrationFormType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $form->getData();
+
+            $plainPassword = $form['plainPassword']->getData();
+
+            $user->setPassword($passwordHasher->hashPassword($user, $plainPassword));
+
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash('success', 'User successfully created!');
+
+            return $this->redirectToRoute('app_home');
+
+
+        }
+
+        return $this->render('security/register.html.twig', [
+            'registrationForm' => $form->createView()
+        ]);
+    } */
+
 }
