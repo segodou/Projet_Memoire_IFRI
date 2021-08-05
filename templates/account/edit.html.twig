@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Editer compte utilisateur' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-6 mx-auto ">
+            <h1 class="my-5 text-center">Mis à jour profil</h1>
+
+            {{ form_start(Form) }}
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form_row(Form.firstName) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(Form.lastName) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form_row(Form.phone) }}
+                    </div>
+                    <div class="col-md-6">
+                      {{ form_row(Form.utilisateur) }}
+                    </div>
+                </div>
+                {{ form_row(Form.adresse) }}
+                {{ form_row(Form.email) }}
+                
+
+                <button type="submit" class="btn btn-primary btn-lg btn-block" formnovalidate>Mis à jour</button>
+
+            {{ form_end(Form) }}
+    
+        </div>
+    </div>
+
+{% endblock %}

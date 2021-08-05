@@ -17,6 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="users")
  * @ORM\HasLifecycleCallbacks
  * @UniqueEntity(fields={"email"}, message="Il y a déjà un compte avec cet email")
+ * @UniqueEntity(fields={"utilisateur"}, message="Il y a déjà un compte avec cet nom d'utilisateur")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -80,6 +81,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="boolean")
      */
     private $isVerified = false;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez entrer un nom d'utilisateur")
+     * @Assert\Length(min=4, max=20)
+     */
+    private $utilisateur;
 
     public function __construct()
     {
@@ -273,6 +281,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getGravatar(?int $size = 100)
     {
         return sprintf('https://www.gravatar.com/avatar/%s/?s=%d', md5(strtolower(trim($this->getEmail()))), $size);
+    }
+
+    public function getUtilisateur(): string
+    {
+        return (string) $this->utilisateur;
+    }
+
+    public function setUtilisateur(string $utilisateur): self
+    {
+        $this->utilisateur = $utilisateur;
+
+        return $this;
     }
 
     
