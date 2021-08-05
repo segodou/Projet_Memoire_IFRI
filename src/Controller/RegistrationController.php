@@ -30,7 +30,7 @@ class RegistrationController extends AbstractController
     public function register(Request $request, UserPasswordHasherInterface $passwordHasher): Response
     {
         if ($this->getUser()) {
-            $this->addFlash('error', 'Already logged in!');
+            //$this->addFlash('error', 'Already logged in!');
 
             return $this->redirectToRoute('app_home');
         }
