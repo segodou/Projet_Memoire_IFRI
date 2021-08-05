@@ -28,16 +28,14 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     private $urlGenerator;
     private $userRepository;
-   // private $csrfTokenManger;
-   // private $passwordHasher;
+
 
     public function __construct(UrlGeneratorInterface $urlGenerator, UserRepository $userRepository,
         CsrfTokenManagerInterface $csrfTokenManger, UserPasswordHasherInterface $passwordHasher)
     {
         $this->urlGenerator = $urlGenerator;
         $this->userRepository = $userRepository;
-        // $this->csrfTokenManger = $csrfTokenManger;
-       // $this->passwordHasher = $passwordHasher;
+;
     }
 
     public function authenticate(Request $request): PassportInterface
