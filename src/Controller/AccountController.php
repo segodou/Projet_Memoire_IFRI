@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+use App\Form\ChangePasswordFormType;
 use App\Form\UserFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AccountController extends AbstractController
@@ -46,9 +48,30 @@ class AccountController extends AbstractController
         /**
      * @Route("/account/change-password", name="app_account_change_password")
      */
-    public function changePassword(Request $request, EntityManagerInterface $em): Response
+    public function changePassword(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $hasherPassword): Response
     {
+        $user = $this->getUser();
 
-        return $this->render('account/change_password.html.twig');
+        $form = $this->createForm(ChangePasswordFormType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setPassword(
+                $hasherPassword->hashPassword($user, $form['plainPassword']->getData())
+            );
+
+            $em->flush();
+
+            $this->addFlash('success', 'Votre mot de passe a été mis à jour avec succès');
+
+            return $this->redirectToRoute('app_account');
+
+        }
+
+
+        return $this->render('account/change_password.html.twig', [
+            'Form'=> $form->createView()
+        ]);
     }
 }
