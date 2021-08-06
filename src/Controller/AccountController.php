@@ -10,22 +10,30 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+
+/**
+ * @Route("/account")
+ * @IsGranted("ROLE_USER")
+ */
 class AccountController extends AbstractController
 {
     /**
-     * @Route("/account", name="app_account")
+     * @Route("", name="app_account")
      */
     public function show(): Response
     {
+
         return $this->render('account/show.html.twig');
     }
 
     /**
-     * @Route("/account/edit", name="app_account_edit")
+     * @Route("/edit", name="app_account_edit")
      */
     public function edit(Request $request, EntityManagerInterface $em): Response
     {
+        
         $user = $this->getUser();
         
         $form = $this->createForm(UserFormType::class, $user);
@@ -46,10 +54,11 @@ class AccountController extends AbstractController
     }
 
         /**
-     * @Route("/account/change-password", name="app_account_change_password")
+     * @Route("/change-password", name="app_account_change_password")
      */
     public function changePassword(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $hasherPassword): Response
     {
+        
         $user = $this->getUser();
 
         $form = $this->createForm(ChangePasswordFormType::class, null, [
