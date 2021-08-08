@@ -6,9 +6,11 @@ use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
@@ -28,13 +30,14 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     private $urlGenerator;
     private $userRepository;
+    private $flashBag;
 
 
-    public function __construct(UrlGeneratorInterface $urlGenerator, UserRepository $userRepository,
-        CsrfTokenManagerInterface $csrfTokenManger, UserPasswordHasherInterface $passwordHasher)
+    public function __construct(UrlGeneratorInterface $urlGenerator, UserRepository $userRepository, FlashBagInterface $flashBag)
     {
         $this->urlGenerator = $urlGenerator;
         $this->userRepository = $userRepository;
+        $this->flashBag = $flashBag;
 ;
     }
 
@@ -71,5 +74,21 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     protected function getLoginUrl(Request $request): string
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
+    }
+
+    /**
+     * Override to control what happens when the user hits a secure page
+     * but isn't logged in yet.
+     */
+    public function start(Request $request, AuthenticationException $authException = null): Response
+    {
+        $this->flashBag->add(
+            'error',
+            'Veuillez vous connecter d\'abord!'
+        );
+        
+        $url = $this->getLoginUrl($request);
+
+        return new RedirectResponse($url);
     }
 }

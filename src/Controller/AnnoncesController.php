@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class AnnoncesController extends AbstractController
 {
@@ -32,6 +33,7 @@ class AnnoncesController extends AbstractController
 
     /**
      * @Route("/annonces/create", name="app_annonces_create")
+     * @Security("is_granted('ROLE_USER') && user.isVerified() && annonce.getUser() == user")
      */
     public function create(Request $request, EntityManagerInterface $em): Response
     {
@@ -91,6 +93,7 @@ class AnnoncesController extends AbstractController
 
     /**
      * @Route("/annonces/{id<[0-9]+>}/edit", name="app_annonces_edit", methods={"GET", "POST"})
+     * @Security("is_granted('ROLE_USER') && user.isVerified() && annonce.getUser() == user")
      */
     public function edit(Request $request, EntityManagerInterface $em, Annonces $annonce): Response
     {
@@ -134,10 +137,12 @@ class AnnoncesController extends AbstractController
 
     /**
      * @Route("/annonces/{id<[0-9]+>}/delete", name="app_annonces_delete")
+     * @Security("is_granted('ROLE_USER') && user.isVerified() && annonce.getUser() == user")
      */
     public function delete(Request $request, EntityManagerInterface $em, Annonces $annonce): Response
-    {   
-       if ($this->isCsrfTokenValid('deletion' . $annonce->getId(), $request->request->get('_token'))) {
+    {
+       
+        if ($this->isCsrfTokenValid('deletion' . $annonce->getId(), $request->request->get('_token'))) {
             $annonce->setStatusAnnonce("1");
             $em->persist($annonce);
             $em->flush();

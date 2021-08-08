@@ -13,6 +13,8 @@ class AdminController extends AbstractController
      */
     public function dash(): Response
     {
+            $this->denyAccessUnlessGranted('ROLE_AMDIN');
+
             return $this->render('admin/accueil.html.twig');
 
     }
