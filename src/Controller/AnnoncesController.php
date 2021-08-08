@@ -158,6 +158,7 @@ class AnnoncesController extends AbstractController
      */
     public function deleteImage(Images $image, Request $request): Response
     {
+
         $data = json_decode($request->getContent(), true);
 
         // On vérifie si le token est valide
