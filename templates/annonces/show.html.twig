@@ -41,9 +41,11 @@
 				<p class="pl-3 pb-3 text-muted"><small>Submitted {{annonce.createdAt|ago}} </small></p>
 				<p class="pl-3 pb-3"><a href="#" class=" btn btn-primary">Contacter l'annonceur</a></p>
 
-				<p class="pl-3 pb-3">
-					<a href="http://maps.google.com?q={{annonce.location}}">Cliquer ici</a>
-					pour avoir un itinéraire vers le bien.
+				<p class="pl-3 pb-3 pr-3">
+					<b>
+						<a href="http://maps.google.com?q={{annonce.location}}">Cliquer ici <i class="bi bi-geo-alt-fill"></i></a>
+						pour avoir un itinéraire vers le bien.
+					</b>
 				</p>
 						
 			</div>
@@ -51,37 +53,128 @@
 
 		<p class="pl-3 pr-3 pb-3 mt-4 text-break">{{annonce.description|nl2br}}</p>
 
-		<div class="row pl-3 pb-3">
+		<div class="row pl-3 pr-3">			
 			<div class="col-md-6">
-				<h2>Caractéristiques</h2>
-				<table class="table table striped">
-					<tr>
-						<td>Surface habitable</td>
-						<td>{{annonce.surface}} m2</td>
-					</tr>
-					<tr>
-						<td>Pièces</td>
-						<td>{{annonce.rooms}}</td>
-					</tr>
-					<tr>
-						<td>Chambres</td>
-						<td>{{annonce.bedrooms}}</td>
-					</tr>
-					<tr>
-						<td>Type de bien</td>
-						<td>{{annonce.typeBien}}</td>
-					</tr>
-				</table>
+				<div class="card">
+					<div class="card-header">
+						<b>Caractéristiques</b> 
+					</div>
+					<table class="table table striped bg-light text-dark">
+						<tr>
+							<td>Surface habitable</td>
+							<td>{{annonce.surface}} m2</td>
+						</tr>
+						<tr>
+							<td>Pièces</td>
+							<td>{{annonce.rooms}}</td>
+						</tr>
+						<tr>
+							<td>Chambres</td>
+							<td>{{annonce.bedrooms}}</td>
+						</tr>
+						<tr>
+							<td>Type de bien</td>
+							<td>{{annonce.typeBien}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header bg-primary text-white">
+						<b>Marché proche du Bien</b>
+					</div>
+					<div class="card-body">
+						<h3 class="text-info" style="font-weight: bold;">{{annonce.market.titleM}}</h3>
+						
+						<p>
+							<b>Emplacement: <a href="http://maps.google.com?q={{annonce.market.adresseM}}">Cliquer ici <i class="bi bi-geo-alt-fill"></i></a></b> 
+						</p>
+
+						<p class="text-break"> {{annonce.market.descriptionM|nl2br}} </p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row pl-3 pr-3 mt-5 mb-3">	
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header bg-primary text-white">
+						<b>Etablissement d'enseignement proche du Bien</b>
+					</div>
+					<div class="card-body">
+						<h3 class="text-info" style="font-weight: bold;">{{annonce.school.titleS}}</h3>
+						
+						<p>
+							<b>Emplacement: <a href="http://maps.google.com?q={{annonce.school.adresseS}}">Cliquer ici <i class="bi bi-geo-alt-fill"></i></a></b> 
+						</p>
+
+						<p class="text-break"> {{annonce.school.descriptionS|nl2br}} </p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header bg-primary text-white">
+						<b>Centre de santé proche du Bien</b>
+					</div>
+					<div class="card-body">
+						<h3 class="text-info" style="font-weight: bold;">{{annonce.hopital.titleH}}</h3>
+						
+						<p>
+							<b>Emplacement: <a href="http://maps.google.com?q={{annonce.hopital.adresseH}}">Cliquer ici <i class="bi bi-geo-alt-fill"></i></a></b> 
+						</p>
+
+						<p class="text-break"> {{annonce.hopital.descriptionH|nl2br}} </p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row pl-3 pr-3 mt-5 mb-3">	
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header bg-primary text-white">
+						<b>Supermarché proche du Bien</b>
+					</div>
+					<div class="card-body">
+						<h3 class="text-info" style="font-weight: bold;">{{annonce.superMarket.titleSM}}</h3>
+						
+						<p>
+							<b>Emplacement: <a href="http://maps.google.com?q={{annonce.superMarket.adresseSM}}">Cliquer ici <i class="bi bi-geo-alt-fill"></i></a></b> 
+						</p>
+
+						<p class="text-break"> {{annonce.superMarket.descriptionSM|nl2br}} </p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header bg-primary text-white">
+						<b>Restaurant proche du Bien</b>
+					</div>
+					<div class="card-body">
+						<h3 class="text-info" style="font-weight: bold;">{{annonce.restaurant.titleR}}</h3>
+						
+						<p>
+							<b>Emplacement: <a href="http://maps.google.com?q={{annonce.restaurant.adresseR}}">Cliquer ici <i class="bi bi-geo-alt-fill"></i></a></b> 
+						</p>
+
+						<p class="text-break"> {{annonce.restaurant.descriptionR|nl2br}} </p>
+					</div>
+				</div>
 			</div>
 		</div>
 
 		{% if app.user == annonce.user %}
 			<div class="pl-3 pb-3">
-				<a href=" {{path('app_annonces_edit',{id: annonce.id} )}} " class="btn btn-light">Modifier</a>
+				<a href=" {{path('app_annonces_edit',{id: annonce.id} )}} " class="btn btn-primary">Modifier</a>
 				<form action=" {{path('app_annonces_delete',{id: annonce.id} )}}" method="post" style="display : inline-block;" 
 					onsubmit="return confirm('Etes vous sûre de vouloir supprimer cette annonce ?')">
 					<input type="hidden" name="_token" value="{{csrf_token('deletion' ~ annonce.id)}}">
-					<button class="btn btn-light">Supprimer</button>
+					<button class="btn btn-primary">Supprimer</button>
 				</form>
 			</div>
 		{% endif %}
