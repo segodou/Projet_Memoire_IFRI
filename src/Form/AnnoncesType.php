@@ -6,10 +6,15 @@ use App\Entity\Annonces;
 use App\Entity\Arrondissement;
 use App\Entity\Commune;
 use App\Entity\Departement;
+use App\Entity\Market;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -21,18 +26,34 @@ class AnnoncesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('description')
-            ->add('price')
+            ->add('title', TextType::class, [
+                'label' => 'Titre annonce'
+            ])
+            ->add('description', TextareaType::class, [
+                'label' => 'Description'
+            ])
+            ->add('price', IntegerType::class, [
+                'label' => 'Prix'
+            ])
             ->add('type', ChoiceType::class, [
                 'choices' => $this->getChoices(),
                 'label' => 'Type du bien'
             ])
-            ->add('surface')
-            ->add('rooms')
-            ->add('bedrooms')
-            ->add('location')
-            ->add('sold')
+            ->add('surface', IntegerType::class, [
+                'label' => 'Surface (m²)'
+            ])
+            ->add('rooms', IntegerType::class, [
+                'label' => 'Nombre(s) de Pièce(s)'
+            ])
+            ->add('bedrooms', IntegerType::class, [
+                'label' => 'Nombre(s) de Chambre(s)'
+            ])
+            ->add('location', TextType::class, [
+                'label' => 'Coordonnées'
+            ])
+            ->add('sold', CheckboxType::class, [
+                'label' => 'Vendu'
+            ])
             // On ajoute le champ "images" dans le formulaire
             // Il n'est pas lié à la base de données (mapped à false)
             ->add('images', FileType::class, [
@@ -40,6 +61,81 @@ class AnnoncesType extends AbstractType
                 'multiple' => true,
                 'mapped' => false,
                 'required' => false
+            ])
+            ->add('titleM', TextType::class, [
+                'mapped' => false,
+                'required' => false,
+                'label' => 'Intitulé du marché'
+            ])
+            ->add('adresseM', TextType::class, [
+                'mapped' => false,
+                'required' => false,
+                'label' => 'Coordonnées',
+            ])
+            ->add('descriptionM', TextareaType::class, [
+                'mapped' => false,
+                'required' => false,
+                'label' => 'A propos du marché',
+            ])
+            ->add('titleSM', TextType::class, [
+                'mapped' => false,
+                'required' => false,
+                'label' => 'Intitulé du supermarché'
+            ])
+            ->add('adresseSM', TextType::class, [
+                'mapped' => false,
+                'required' => false,
+                'label' => 'Coordonnées',
+            ])
+            ->add('descriptionSM', TextareaType::class, [
+                'mapped' => false,
+                'required' => false,
+                'label' => 'A propos du supermarché',
+            ])
+            ->add('titleS', TextType::class, [
+                'mapped' => false,
+                'required' => false,
+                'label' => 'Intitulé de l\'établissement'
+            ])
+            ->add('adresseS', TextType::class, [
+                'mapped' => false,
+                'required' => false,
+                'label' => 'Coordonnées',
+            ])
+            ->add('descriptionS', TextareaType::class, [
+                'mapped' => false,
+                'required' => false,
+                'label' => 'A propos de l\'établissement',
+            ])
+            ->add('titleH', TextType::class, [
+                'mapped' => false,
+                'required' => false,
+                'label' => 'Intitulé de l\'hopital'
+            ])
+            ->add('adresseH', TextType::class, [
+                'mapped' => false,
+                'required' => false,
+                'label' => 'Coordonnées',
+            ])
+            ->add('descriptionH', TextareaType::class, [
+                'mapped' => false,
+                'required' => false,
+                'label' => 'A propos de l\'hopital',
+            ])
+            ->add('titleR', TextType::class, [
+                'mapped' => false,
+                'required' => false,
+                'label' => 'Intitulé du restaurant'
+            ])
+            ->add('adresseR', TextType::class, [
+                'mapped' => false,
+                'required' => false,
+                'label' => 'Coordonnées',
+            ])
+            ->add('descriptionR', TextareaType::class, [
+                'mapped' => false,
+                'required' => false,
+                'label' => 'A propos du restaurant',
             ])
             ->add('departement', EntityType::class, [
                 'class' => 'App\Entity\Departement',

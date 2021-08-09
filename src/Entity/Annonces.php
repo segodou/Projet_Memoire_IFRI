@@ -17,7 +17,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass=AnnoncesRepository::class)
  * @ORM\HasLifecycleCallbacks
  * @Vich\Uploadable
- * @UniqueEntity("title")
  */
 class Annonces
 {
@@ -123,6 +122,36 @@ class Annonces
      */
     private $user;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Market::class, inversedBy="annonce", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $market;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Hopital::class, inversedBy="annonce", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $hopital;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=School::class, inversedBy="annonce", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $school;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=SuperMarket::class, inversedBy="annonce", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $superMarket;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Restaurant::class, inversedBy="annonce", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $restaurant;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -210,7 +239,7 @@ class Annonces
         return $this->statusAnnonce;
     }
 
-    public function setStatusAnnonce(bool $statusAnnonce): self
+    public function setStatusAnnonce(?bool $statusAnnonce): self
     {
         $this->statusAnnonce = $statusAnnonce;
 
@@ -252,7 +281,7 @@ class Annonces
         return $this->type;
     }
 
-    public function setType(int $type): self
+    public function setType(?int $type): self
     {
         $this->type = $type;
 
@@ -281,7 +310,7 @@ class Annonces
         return $this->location;
     }
 
-    public function setLocation(string $location): self
+    public function setLocation(?string $location): self
     {
         $this->location = $location;
 
@@ -293,7 +322,7 @@ class Annonces
         return $this->sold;
     }
 
-    public function setSold(bool $sold): self
+    public function setSold(?bool $sold): self
     {
         $this->sold = $sold;
 
@@ -308,6 +337,66 @@ class Annonces
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getMarket(): ?Market
+    {
+        return $this->market;
+    }
+
+    public function setMarket(?Market $market): self
+    {
+        $this->market = $market;
+
+        return $this;
+    }
+
+    public function getHopital(): ?Hopital
+    {
+        return $this->hopital;
+    }
+
+    public function setHopital(?Hopital $hopital): self
+    {
+        $this->hopital = $hopital;
+
+        return $this;
+    }
+
+    public function getSchool(): ?School
+    {
+        return $this->school;
+    }
+
+    public function setSchool(?School $school): self
+    {
+        $this->school = $school;
+
+        return $this;
+    }
+
+    public function getSuperMarket(): ?SuperMarket
+    {
+        return $this->superMarket;
+    }
+
+    public function setSuperMarket(?SuperMarket $superMarket): self
+    {
+        $this->superMarket = $superMarket;
+
+        return $this;
+    }
+
+    public function getRestaurant(): ?Restaurant
+    {
+        return $this->restaurant;
+    }
+
+    public function setRestaurant(?Restaurant $restaurant): self
+    {
+        $this->restaurant = $restaurant;
 
         return $this;
     }

@@ -3,7 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Annonces;
+use App\Entity\Hopital;
 use App\Entity\Images;
+use App\Entity\Market;
+use App\Entity\Restaurant;
+use App\Entity\School;
+use App\Entity\SuperMarket;
 use App\Form\AnnoncesType;
 use App\Repository\AnnoncesRepository;
 use App\Repository\UserRepository;
@@ -32,8 +37,21 @@ class AnnoncesController extends AbstractController
     }
 
     /**
+     * @Route("/annonces/user", name="app_annonces_user")
+     */
+    public function annoncesUser(AnnoncesRepository $annonceRepository): Response
+    {
+        $user = $this->getUser()->getId();
+        $annonces = $annonceRepository->findBy(
+                    [   'user' => $user], 
+                    ['createdAt' => 'DESC']
+                );
+        return $this->render('annonces/annonceUser.html.twig', compact('annonces'));
+    }
+
+    /**
      * @Route("/annonces/create", name="app_annonces_create")
-     * @Security("is_granted('ROLE_USER') && user.isVerified() && annonce.getUser() == user")
+     * @Security("is_granted('ROLE_USER') && user.isVerified()")
      */
     public function create(Request $request, EntityManagerInterface $em): Response
     {
@@ -45,6 +63,36 @@ class AnnoncesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $annonce->setStatusAnnonce("0");
+
+             //on enregistre les données concernant le marché
+            $market = new Market;
+            $market->setTitleM($form->get('titleM')->getData());
+            $market->setAdresseM($form->get('adresseM')->getData());
+            $market->setDescriptionM($form->get('descriptionM')->getData());
+
+             //on enregistre les données concernant le supermarché
+            $superMarket = new SuperMarket;
+            $superMarket->setTitleSM($form->get('titleSM')->getData());
+            $superMarket->setAdresseSM($form->get('adresseSM')->getData());
+            $superMarket->setDescriptionSM($form->get('descriptionSM')->getData());
+
+            //on enregistre les données concernant l'hopital
+            $hopital = new Hopital;
+            $hopital->setTitleH($form->get('titleH')->getData());
+            $hopital->setAdresseH($form->get('adresseH')->getData());
+            $hopital->setDescriptionH($form->get('descriptionH')->getData());
+
+            //on enregistre les données concernant l'école
+            $school = new School;
+            $school->setTitleS($form->get('titleS')->getData());
+            $school->setAdresseS($form->get('adresseS')->getData());
+            $school->setDescriptionS($form->get('descriptionS')->getData());
+
+            //on enregistre les données concernant l'école
+            $restaurant = new Restaurant;
+            $restaurant->setTitleR($form->get('titleR')->getData());
+            $restaurant->setAdresseR($form->get('adresseR')->getData());
+            $restaurant->setDescriptionR($form->get('descriptionR')->getData());
 
              // On récupère les images transmises
              $images = $form->get('images')->getData();
@@ -68,6 +116,11 @@ class AnnoncesController extends AbstractController
  
             $em = $this->getDoctrine()->getManager();
             $annonce->setUser($this->getUser());
+            $annonce->setMarket($market);
+            $annonce->setSuperMarket($superMarket);
+            $annonce->setHopital($hopital);
+            $annonce->setSchool($school);
+            $annonce->setRestaurant($restaurant);
             $em->persist($annonce);
             $em->flush();
 
