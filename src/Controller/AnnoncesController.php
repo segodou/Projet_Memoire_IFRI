@@ -27,6 +27,14 @@ class AnnoncesController extends AbstractController
      */
     public function index(AnnoncesRepository $annonceRepository): Response
     {
+        if ($this->getUser()) {
+            $user = $this->getUser();
+            $role =$user->getRoles()[0];
+            if ($role == "ROLE_ADMIN") {
+                return $this->redirectToRoute('app_admin_home');
+            }
+        }
+
         $annonces = $annonceRepository->findBy(
                     [   'statusAnnonce' => '0', 
                         'sold' => '0'

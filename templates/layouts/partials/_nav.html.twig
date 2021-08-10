@@ -8,6 +8,14 @@
 		<div class="collapse navbar-collapse" id="navbarsExample03">
 			<ul class="navbar-nav ml-auto">
 				{% if app.user %}
+					{% if is_granted('ROLE_ADMIN') %}
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('app_account') }}">Compte</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+						</li>
+					{% else %}
 					<li class="nav-item " >
 						<a class="nav-link"  href="{{ path('app_annonces_create')}}">Nouvelle Annonce</a>
 					</li>
@@ -20,7 +28,8 @@
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
 					</li>
-					{% else %}
+					{% endif %}
+				{% else %}
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
 					</li>
