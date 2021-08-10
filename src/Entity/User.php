@@ -89,6 +89,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $utilisateur;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez choisir votre sexe")
+     */
+    private $sexe;
+
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
@@ -291,6 +297,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUtilisateur(string $utilisateur): self
     {
         $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    public function getSexe(): ?string
+    {
+        return $this->sexe;
+    }
+
+    public function setSexe(string $sexe): self
+    {
+        $this->sexe = $sexe;
 
         return $this;
     }
