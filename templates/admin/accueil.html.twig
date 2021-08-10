@@ -1,8 +1,9 @@
 {% extends 'baseDash.html.twig' %}
 
-{% block title 'Dashboard' %}
+{% block title 'Les annonces' %}
 
 {% block body %}
+{{include('layouts/partials/_flash_messages.html.twig')}}
 
     {% if annonces|length > 0 %}
         <h1 class="mb-1 mt-3 text-center text-muted"> {{ pluralize(annonces|length, 'Annonce') }} </h1>
@@ -26,19 +27,19 @@
                         {% else %}
                             <div class="mw-100 rounded-top overflow-hidden">
                                 {% for image in annonce.images %}
-                                    <a href=" {{ path('app_annonces_show', {id: annonce.id}) }} ">
+                                    <a href=" {{ path('app_admin_annonces_show', {id: annonce.id}) }} ">
                                         <img src="{{ asset('/uploads/annonces/' ~ image.name) }}" 
                                         alt="{{image.name}}" style="width:350px; height:230px;" class="w-100 "> 
                                     </a>
                                 {% endfor %}
                             </div>
                         {% endif %}
-                        <h2 class="h2 pl-3 pb-3 pt-3"><a href=" {{ path('app_annonces_show', {id: annonce.id}) 
+                        <h2 class="h2 pl-3 pb-3 pt-3"><a href=" {{ path('app_admin_annonces_show', {id: annonce.id}) 
                         }} " class="text-secondary text-decoration-none font-weight-bold"> {{annonce.title}} </a></h2>
                         {# annonce.descrition a remplacé plutard par annonce.type#}
                         <p class="h3 pl-3 pb-1 text-primary font-weight-bold"> {{annonce.price|number_format(0, '', ' ')}} FCFA</p>
-                        <p class="pl-3 pb-3 text-muted"><small>Submitted {{annonce.createdAt|ago}} by {{annonce.user.utilisateur}} </small></p>
-
+                        <p class="pl-3 text-muted"><small>Submitted {{annonce.createdAt|ago}} by {{annonce.user.utilisateur}} </small></p>
+                        <p class="alert text-white" style="background-color: red;">En attente de validation</p>
                     </article>
                 </div>             
             {% endfor %}
@@ -46,10 +47,8 @@
         {% endfor %}
 
     {% else %}
-            <p class="h1 mt-5 text-center">Aucune annonce disponible. 
-                <a href=" {{ path('app_annonces_create') }} "> 
-                    Soyez le premier à publier une annonce
-                </a>
+            <p class="h1 mt-5 text-center">Aucune annonce en attente de validation. 
+
             </p>
     {% endif %}        
 

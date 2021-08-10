@@ -3,53 +3,59 @@
 {% block title %}Page Utilisateur{% endblock %}
 
 {% block body %}
-    {% if annonces|length > 0 %}
-        <h1 class="mb-4 text-center text-muted"> {{ pluralize(annonces|length, 'Annonce') }} </h1>
+    <div class="mb-5">
         
-        {% for row in annonces|batch(3) %}
-            <div class="row mt-5">
-            {% for annonce in row %}
-                <div class="col-md-4">
-                    <article class="annonce bg-white rounded shadow">
-                        {% if annonce.images|length > 1 %}
-                            <div id="caroussel">
-                                <div class="images mw-100 rounded-top">
+        {% if annonces|length > 0 %}
+            <h1 class="mb-4 text-center text-muted"> {{ pluralize(annonces|length, 'Annonce') }} </h1>
+
+            {% for row in annonces|batch(3) %}
+                <div class="row mt-5">
+                {% for annonce in row %}
+                    <div class="col-md-4">
+                        <article class="annonce bg-white rounded shadow">
+                            {% if annonce.images|length > 1 %}
+                                <div id="caroussel">
+                                    <div class="images mw-100 rounded-top">
+                                        {% for image in annonce.images %}
+                                            <a href=" {{ path('app_annonces_show', {id: annonce.id}) }} ">
+                                                <img src="{{ asset('/uploads/annonces/' ~ image.name) }}" 
+                                                alt="{{image.name}}" style="width:350px; height:230px;" class="rounded-top"> 
+                                            </a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="mw-100 rounded-top overflow-hidden">
                                     {% for image in annonce.images %}
                                         <a href=" {{ path('app_annonces_show', {id: annonce.id}) }} ">
                                             <img src="{{ asset('/uploads/annonces/' ~ image.name) }}" 
-                                            alt="{{image.name}}" style="width:350px; height:230px;" class="rounded-top"> 
+                                            alt="{{image.name}}" style="width:350px; height:230px;" class="w-100 "> 
                                         </a>
                                     {% endfor %}
                                 </div>
-                            </div>
-                        {% else %}
-                            <div class="mw-100 rounded-top overflow-hidden">
-                                {% for image in annonce.images %}
-                                    <a href=" {{ path('app_annonces_show', {id: annonce.id}) }} ">
-                                        <img src="{{ asset('/uploads/annonces/' ~ image.name) }}" 
-                                        alt="{{image.name}}" style="width:350px; height:230px;" class="w-100 "> 
-                                    </a>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                        <h2 class="h2 pl-3 pb-3 pt-3"><a href=" {{ path('app_annonces_show', {id: annonce.id}) 
-                        }} " class="text-secondary text-decoration-none font-weight-bold"> {{annonce.title}} </a></h2>
-                        {# annonce.descrition a remplacé plutard par annonce.type#}
-                        <p class="h3 pl-3 pb-1 text-primary font-weight-bold"> {{annonce.price|number_format(0, '', ' ')}} FCFA</p>
-                        <p class="pl-3 pb-3 text-muted"><small>Submitted {{annonce.createdAt|ago}} by {{annonce.user.utilisateur}} </small></p>
-
-                    </article>
-                </div>             
+                            {% endif %}
+                            <h2 class="h2 pl-3 pb-3 pt-3"><a href=" {{ path('app_annonces_show', {id: annonce.id}) 
+                            }} " class="text-secondary text-decoration-none font-weight-bold"> {{annonce.title}} </a></h2>
+                            {# annonce.descrition a remplacé plutard par annonce.type#}
+                            <p class="h3 pl-3 pb-1 text-primary font-weight-bold"> {{annonce.price|number_format(0, '', ' ')}} FCFA</p>
+                            <p class="pl-3 text-muted"><small>Submitted {{annonce.createdAt|ago}} by {{annonce.user.utilisateur}} </small></p>
+                            {% if annonce.approved == false %}
+                                <p class="alert text-white" style="background-color: red;">En attente de validation</p>
+                            {% else %}
+                                <p class="alert text-white" style="background-color: green;">Approuvée</p>
+                            {% endif %}
+                        </article>
+                    </div>             
+                {% endfor %}
+                </div>
             {% endfor %}
-            </div>
-        {% endfor %}
 
-    {% else %}
-            <p class="h1 mt-5 text-center">Aucune annonce disponible. 
-                <a href=" {{ path('app_annonces_create') }} "> 
-                    Soyez le premier à publier une annonce
-                </a>
-            </p>
-    {% endif %}
-
+        {% else %}
+                <p class="h1 mt-5 text-center">Aucune annonce disponible. 
+                    <a href=" {{ path('app_annonces_create') }} "> 
+                        Soyez le premier à publier une annonce
+                    </a>
+                </p>
+        {% endif %}
+    </div>
 {% endblock %}

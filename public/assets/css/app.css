@@ -1,8 +1,4 @@
-html, body {
-    font-family: 'Montserrat', sans-serif;
-}
-
-.alert{
+.alert {
     padding: 10px;
     color: white;
     text-align: center;
@@ -11,26 +7,26 @@ html, body {
     border-radius: 0;
 }
 
-.alert-success{
+.alert-success {
     background-color: green;
 }
 
-.alert-error{
+.alert-error {
     background-color: red;
 }
 
-.alert-info{
+.alert-info {
     background-color: blue;
 }
 
-.images{
+.images {
     display: flex;
     animation-duration: 20s;
     animation-name: mesImages;
     animation-iteration-count: infinite;
 }
 
-#caroussel{
+#caroussel {
     width: 350px;
     height: 230px;
     overflow: hidden;
@@ -62,11 +58,11 @@ html, body {
     transition: 0.4s ease-out;
 }
 
-.images_show{
+.images_show {
     display: flex;
 }
 
-#caroussel_show{
+#caroussel_show {
     width: 730px;
     height: 457px;
     overflow: auto;

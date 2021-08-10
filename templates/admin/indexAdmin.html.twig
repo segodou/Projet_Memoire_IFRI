@@ -3,7 +3,6 @@
 {% block title 'Dashboard' %}
 
 {% block body %}
-
     {% if annonces|length > 0 %}
         <h1 class="mb-1 mt-3 text-center text-muted"> {{ pluralize(annonces|length, 'Annonce') }} </h1>
         
@@ -47,9 +46,6 @@
 
     {% else %}
             <p class="h1 mt-5 text-center">Aucune annonce disponible. 
-                <a href=" {{ path('app_annonces_create') }} "> 
-                    Soyez le premier à publier une annonce
-                </a>
             </p>
     {% endif %}        
 

@@ -37,7 +37,8 @@ class AnnoncesController extends AbstractController
 
         $annonces = $annonceRepository->findBy(
                     [   'statusAnnonce' => '0', 
-                        'sold' => '0'
+                        'sold' => false,
+                        'approved' => true
                     ], 
                     ['createdAt' => 'DESC']
                 );
@@ -156,7 +157,7 @@ class AnnoncesController extends AbstractController
      * @Route("/annonces/{id<[0-9]+>}/edit", name="app_annonces_edit", methods={"GET", "POST"})
      * @Security("is_granted('ROLE_USER') && user.isVerified() && annonce.getUser() == user")
      */
-    public function edit(Request $request, EntityManagerInterface $em, Annonces $annonce, Market $market): Response
+    public function edit(Request $request, EntityManagerInterface $em, Annonces $annonce): Response
     {        
         $form = $this->createForm(AnnoncesType::class, $annonce);
 

@@ -153,6 +153,11 @@ class Annonces
      */
     private $restaurant;
 
+    /**
+     * @ORM\Column(type="boolean", options={"default":false})
+     */
+    private $approved;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -398,6 +403,18 @@ class Annonces
     public function setRestaurant(?Restaurant $restaurant): self
     {
         $this->restaurant = $restaurant;
+
+        return $this;
+    }
+
+    public function getApproved(): ?bool
+    {
+        return $this->approved;
+    }
+
+    public function setApproved(bool $approved): self
+    {
+        $this->approved = $approved;
 
         return $this;
     }
