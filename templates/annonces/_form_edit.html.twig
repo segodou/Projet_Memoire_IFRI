@@ -1,0 +1,140 @@
+{{ form_start(monFormulaire) }}
+
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <strong><i class="bi bi-house-door"></i> Informations relatives au Bien</strong>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6"><b>{{ form_row(monFormulaire.title) }}</b></div>
+                <div class="col-md-3"><b>{{ form_row(monFormulaire.surface) }}</b></div>
+                <div class="col-md-3"><b>{{ form_row(monFormulaire.price) }}</b></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><b>{{ form_row(monFormulaire.type) }}</b></div>
+                <div class="col-md-4"><b>{{ form_row(monFormulaire.rooms) }}</b></div>
+                <div class="col-md-4"><b>{{ form_row(monFormulaire.bedrooms) }}</b></div>
+            </div>
+            <div class="row">
+                <div class="col-md-8"><b>{{ form_row(monFormulaire.location) }}</b></div>
+                <div class="mt-5 col-md-4"><b>{{ form_row(monFormulaire.sold) }}</b></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12"><b>{{ form_row(monFormulaire.description) }}</b></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6"><b>{{ form_row(monFormulaire.departement) }}</b></div>
+                <div class="col-md-6"><b>{{ form_row(monFormulaire.commune) }}</b></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6"><b>{{ form_row(monFormulaire.arrondissement) }}</b></div>
+                <div class="col-md-6"><b>{{ form_row(monFormulaire.quartier) }}</b></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12"><b>{{ form_row(monFormulaire.images) }}</b></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hidden" style="display : none;">
+        <div class="card mt-5">
+        <div class="card-header bg-primary text-white">
+            <strong>Marché proche du Bien</strong>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6"><b>{{ form_row(monFormulaire.titleM, {'attr': {'value' : annonce.market.titleM}}) }}</b></div>
+                <div class="col-md-6"><b>{{ form_row(monFormulaire.adresseM, {'attr': {'value' : annonce.market.adresseM}}) }}</b></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12"><b>{{ form_row(monFormulaire.descriptionM, {'attr': {'value' : annonce.market.descriptionM}}) }}</b></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-5">
+        <div class="card-header bg-primary text-white">
+            <strong>Etablissement d'enseignement proche du Bien</strong>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6"><b>{{ form_row(monFormulaire.titleS, {'attr': {'value' : annonce.school.titleS}}) }}</b></div>
+                <div class="col-md-6"><b>{{ form_row(monFormulaire.adresseS, {'attr': {'value' : annonce.school.adresseS}}) }}</b></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12"><b>{{ form_row(monFormulaire.descriptionS, {'attr': {'value' : annonce.school.descriptionS}}) }}</b></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-5">
+        <div class="card-header bg-primary text-white">
+            <strong>Centre de santé proche du Bien</strong>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6"><b>{{ form_row(monFormulaire.titleH, {'attr': {'value' : annonce.hopital.titleH}}) }}</b></div>
+                <div class="col-md-6"><b>{{ form_row(monFormulaire.adresseH, {'attr': {'value' : annonce.hopital.adresseH}}) }}</b></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12"><b>{{ form_row(monFormulaire.descriptionH, {'attr': {'value' : annonce.hopital.descriptionH}}) }}</b></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-5">
+        <div class="card-header bg-primary text-white">
+            <strong>Supermarché proche du Bien</strong>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6"><b>{{ form_row(monFormulaire.titleSM, {'attr': {'value' : annonce.superMarket.titleSM}}) }}</b></div>
+                <div class="col-md-6"><b>{{ form_row(monFormulaire.adresseSM, {'attr': {'value' : annonce.superMarket.adresseSM}}) }}</b></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12"><b>{{ form_row(monFormulaire.descriptionSM, {'attr': {'value' : annonce.superMarket.descriptionSM}}) }}</b></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-5">
+        <div class="card-header bg-primary text-white">
+            <strong>Restaurant proche du Bien</strong>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6"><b>{{ form_row(monFormulaire.titleR, {'attr': {'value' : annonce.restaurant.titleR}}) }}</b></div>
+                <div class="col-md-6"><b>{{ form_row(monFormulaire.adresseR, {'attr': {'value' : annonce.restaurant.adresseR}}) }}</b></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12"><b>{{ form_row(monFormulaire.descriptionR, {'attr': {'value' : annonce.restaurant.descriptionR}}) }}</b></div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+
+
+    {{ form_widget(monFormulaire) }}
+
+     {# Vérifier si la route est "annonces_edit" on affiche les images #}
+     {% if app.request.attributes.get('_route') == 'app_annonces_edit' %}
+            <h2>Images</h2>
+            <div class="row">
+                {% for image in annonce.images %}
+                    <div class="col-md-4 flex-column">
+                        <img src="{{ asset('/uploads/annonces/' ~ image.name) }}" alt="Image" style="width:200px; height:auto;" 
+                        class= "rounded shadow"> 
+                    {#  <img src="{{ vich_uploader_asset(image)|imagine_filter('article')  }}" alt="Image"> #}
+                        <a href="{{ path('annonces_delete_image', {'id': image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">
+                            <i class="bi bi-trash-fill" width="50" height="50" ></i>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    
+    <input type="submit" value="{{submitButtonText ?? 'Créer l\'annonce'}}" formnovalidate 
+    class="btn btn-primary btn-block mt-3">
+
+{{ form_end(monFormulaire) }}

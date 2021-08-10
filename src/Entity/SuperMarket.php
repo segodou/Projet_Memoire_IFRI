@@ -84,7 +84,7 @@ class SuperMarket
         return $this->descriptionSM;
     }
 
-    public function setDescriptionSM(string $descriptionSM): self
+    public function setDescriptionSM(?string $descriptionSM): self
     {
         $this->descriptionSM = $descriptionSM;
 

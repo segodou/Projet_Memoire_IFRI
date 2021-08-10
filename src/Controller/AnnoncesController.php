@@ -148,13 +148,14 @@ class AnnoncesController extends AbstractController
      * @Route("/annonces/{id<[0-9]+>}/edit", name="app_annonces_edit", methods={"GET", "POST"})
      * @Security("is_granted('ROLE_USER') && user.isVerified() && annonce.getUser() == user")
      */
-    public function edit(Request $request, EntityManagerInterface $em, Annonces $annonce): Response
-    {
+    public function edit(Request $request, EntityManagerInterface $em, Annonces $annonce, Market $market): Response
+    {        
         $form = $this->createForm(AnnoncesType::class, $annonce);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
             // On récupère les images transmises
             $images = $form->get('images')->getData();
 

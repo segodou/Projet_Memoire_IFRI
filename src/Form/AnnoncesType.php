@@ -20,6 +20,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class AnnoncesType extends AbstractType
 {
@@ -49,7 +50,7 @@ class AnnoncesType extends AbstractType
                 'label' => 'Nombre(s) de Chambre(s)'
             ])
             ->add('location', TextType::class, [
-                'label' => 'Coordonnées'
+                'label' => 'Coordonnées (Latitude,Longitude) '
             ])
             ->add('sold', CheckboxType::class, [
                 'label' => 'Vendu'
@@ -65,77 +66,122 @@ class AnnoncesType extends AbstractType
             ->add('titleM', TextType::class, [
                 'mapped' => false,
                 'required' => false,
-                'label' => 'Intitulé du marché'
+                'label' => 'Intitulé du marché',
+                'constraints' => [
+                    new NotBlank,
+                ]
             ])
             ->add('adresseM', TextType::class, [
                 'mapped' => false,
                 'required' => false,
-                'label' => 'Coordonnées',
+                'label' => 'Coordonnées (Latitude,Longitude)',
+                'constraints' => [
+                    new NotBlank,
+                ]
             ])
             ->add('descriptionM', TextareaType::class, [
                 'mapped' => false,
                 'required' => false,
                 'label' => 'A propos du marché',
+                'constraints' => [
+                    new NotBlank,
+                ]
             ])
             ->add('titleSM', TextType::class, [
                 'mapped' => false,
                 'required' => false,
-                'label' => 'Intitulé du supermarché'
+                'label' => 'Intitulé du supermarché',
+                'constraints' => [
+                    new NotBlank,
+                ]
             ])
             ->add('adresseSM', TextType::class, [
                 'mapped' => false,
                 'required' => false,
-                'label' => 'Coordonnées',
+                'label' => 'Coordonnées (Latitude,Longitude)',
+                'constraints' => [
+                    new NotBlank,
+                ]
             ])
             ->add('descriptionSM', TextareaType::class, [
                 'mapped' => false,
                 'required' => false,
                 'label' => 'A propos du supermarché',
+                'constraints' => [
+                    new NotBlank,
+                ]
             ])
             ->add('titleS', TextType::class, [
                 'mapped' => false,
                 'required' => false,
-                'label' => 'Intitulé de l\'établissement'
+                'label' => 'Intitulé de l\'établissement',
+                'constraints' => [
+                    new NotBlank,
+                ]
             ])
             ->add('adresseS', TextType::class, [
                 'mapped' => false,
                 'required' => false,
-                'label' => 'Coordonnées',
+                'label' => 'Coordonnées (Latitude,Longitude)',
+                'constraints' => [
+                    new NotBlank,
+                ]
             ])
             ->add('descriptionS', TextareaType::class, [
                 'mapped' => false,
                 'required' => false,
                 'label' => 'A propos de l\'établissement',
+                'constraints' => [
+                    new NotBlank,
+                ]
             ])
             ->add('titleH', TextType::class, [
                 'mapped' => false,
                 'required' => false,
-                'label' => 'Intitulé de l\'hopital'
+                'label' => 'Intitulé de l\'hopital',
+                'constraints' => [
+                    new NotBlank,
+                ]
             ])
             ->add('adresseH', TextType::class, [
                 'mapped' => false,
                 'required' => false,
-                'label' => 'Coordonnées',
+                'label' => 'Coordonnées (Latitude,Longitude)',
+                'constraints' => [
+                    new NotBlank,
+                ]
             ])
             ->add('descriptionH', TextareaType::class, [
                 'mapped' => false,
                 'required' => false,
                 'label' => 'A propos de l\'hopital',
+                'constraints' => [
+                    new NotBlank,
+                ]
             ])
             ->add('titleR', TextType::class, [
                 'mapped' => false,
                 'required' => false,
-                'label' => 'Intitulé du restaurant'
+                'label' => 'Intitulé du restaurant',
+                'constraints' => [
+                    new NotBlank,
+                ]
             ])
             ->add('adresseR', TextType::class, [
                 'mapped' => false,
                 'required' => false,
-                'label' => 'Coordonnées',
+                'label' => 'Coordonnées (Latitude,Longitude)',
+                'constraints' => [
+                    new NotBlank,
+                ]
             ])
             ->add('descriptionR', TextareaType::class, [
                 'mapped' => false,
                 'required' => false,
                 'label' => 'A propos du restaurant',
+                'constraints' => [
+                    new NotBlank,
+                ]
             ])
             ->add('departement', EntityType::class, [
                 'class' => 'App\Entity\Departement',

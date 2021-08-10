@@ -170,7 +170,9 @@
 
 		{% if app.user == annonce.user %}
 			<div class="pl-3 pb-3">
-				<a href=" {{path('app_annonces_edit',{id: annonce.id} )}} " class="btn btn-primary">Modifier</a>
+				<a href=" {{path('app_annonces_edit',{id: annonce.id} )}} " class="btn btn-primary">
+					Modifier
+				</a>
 				<form action=" {{path('app_annonces_delete',{id: annonce.id} )}}" method="post" style="display : inline-block;" 
 					onsubmit="return confirm('Etes vous sûre de vouloir supprimer cette annonce ?')">
 					<input type="hidden" name="_token" value="{{csrf_token('deletion' ~ annonce.id)}}">

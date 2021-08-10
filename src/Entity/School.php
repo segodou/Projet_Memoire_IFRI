@@ -85,7 +85,7 @@ class School
         return $this->descriptionS;
     }
 
-    public function setDescriptionS(string $descriptionS): self
+    public function setDescriptionS(?string $descriptionS): self
     {
         $this->descriptionS = $descriptionS;
 

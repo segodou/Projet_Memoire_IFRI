@@ -85,7 +85,7 @@ class Hopital
         return $this->descriptionH;
     }
 
-    public function setDescriptionH(string $descriptionH): self
+    public function setDescriptionH(?string $descriptionH): self
     {
         $this->descriptionH = $descriptionH;
 

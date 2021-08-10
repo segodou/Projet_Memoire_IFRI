@@ -84,7 +84,7 @@ class Market
         return $this->descriptionM;
     }
 
-    public function setDescriptionM(string $descriptionM): self
+    public function setDescriptionM(?string $descriptionM): self
     {
         $this->descriptionM = $descriptionM;
 

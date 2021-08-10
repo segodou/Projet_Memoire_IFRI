@@ -22,95 +22,188 @@
             <div class="row">
                 <div class="col-md-12"><b>{{ form_row(monFormulaire.description) }}</b></div>
             </div>
-            <div class="row">
-                <div class="col-md-6"><b>{{ form_row(monFormulaire.departement) }}</b></div>
-                <div class="col-md-6"><b>{{ form_row(monFormulaire.commune) }}</b></div>
-            </div>
-            <div class="row">
-                <div class="col-md-6"><b>{{ form_row(monFormulaire.arrondissement) }}</b></div>
-                <div class="col-md-6"><b>{{ form_row(monFormulaire.quartier) }}</b></div>
-            </div>
+            
+            {% if app.request.attributes.get('_route') == 'app_annonces_edit' %}
+                <div class="hidden" style="display : none;">
+                    <div class="row">
+                        <div class="col-md-6"><b>{{ form_row(monFormulaire.departement) }}</b></div>
+                        <div class="col-md-6"><b>{{ form_row(monFormulaire.commune) }}</b></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6"><b>{{ form_row(monFormulaire.arrondissement) }}</b></div>
+                        <div class="col-md-6"><b>{{ form_row(monFormulaire.quartier) }}</b></div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="row">
+                    <div class="col-md-6"><b>{{ form_row(monFormulaire.departement) }}</b></div>
+                    <div class="col-md-6"><b>{{ form_row(monFormulaire.commune) }}</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6"><b>{{ form_row(monFormulaire.arrondissement) }}</b></div>
+                    <div class="col-md-6"><b>{{ form_row(monFormulaire.quartier) }}</b></div>
+                </div>
+            {% endif %}
+
             <div class="row">
                 <div class="col-md-12"><b>{{ form_row(monFormulaire.images) }}</b></div>
             </div>
         </div>
     </div>
 
-    <div class="card mt-5">
-        <div class="card-header bg-primary text-white">
-            <strong>Marché proche du Bien</strong>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-6"><b>{{ form_row(monFormulaire.titleM) }}</b></div>
-                <div class="col-md-6"><b>{{ form_row(monFormulaire.adresseM) }}</b></div>
+    {% if app.request.attributes.get('_route') == 'app_annonces_edit' %}
+        <div class="hidden" style="display : none;">
+            <div class="card mt-5">
+                <div class="card-header bg-primary text-white">
+                    <strong>Marché proche du Bien</strong>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6"><b>{{ form_row(monFormulaire.titleM) }}</b></div>
+                        <div class="col-md-6"><b>{{ form_row(monFormulaire.adresseM) }}</b></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12"><b>{{ form_row(monFormulaire.descriptionM) }}</b></div>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <div class="col-md-12"><b>{{ form_row(monFormulaire.descriptionM) }}</b></div>
-            </div>
-        </div>
-    </div>
 
-    <div class="card mt-5">
-        <div class="card-header bg-primary text-white">
-            <strong>Etablissement d'enseignement proche du Bien</strong>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-6"><b>{{ form_row(monFormulaire.titleS) }}</b></div>
-                <div class="col-md-6"><b>{{ form_row(monFormulaire.adresseS) }}</b></div>
+            <div class="card mt-5">
+                <div class="card-header bg-primary text-white">
+                    <strong>Etablissement d'enseignement proche du Bien</strong>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6"><b>{{ form_row(monFormulaire.titleS) }}</b></div>
+                        <div class="col-md-6"><b>{{ form_row(monFormulaire.adresseS) }}</b></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12"><b>{{ form_row(monFormulaire.descriptionS) }}</b></div>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <div class="col-md-12"><b>{{ form_row(monFormulaire.descriptionS) }}</b></div>
-            </div>
-        </div>
-    </div>
 
-    <div class="card mt-5">
-        <div class="card-header bg-primary text-white">
-            <strong>Centre de santé proche du Bien</strong>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-6"><b>{{ form_row(monFormulaire.titleH) }}</b></div>
-                <div class="col-md-6"><b>{{ form_row(monFormulaire.adresseH) }}</b></div>
+            <div class="card mt-5">
+                <div class="card-header bg-primary text-white">
+                    <strong>Centre de santé proche du Bien</strong>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6"><b>{{ form_row(monFormulaire.titleH) }}</b></div>
+                        <div class="col-md-6"><b>{{ form_row(monFormulaire.adresseH) }}</b></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12"><b>{{ form_row(monFormulaire.descriptionH) }}</b></div>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <div class="col-md-12"><b>{{ form_row(monFormulaire.descriptionH) }}</b></div>
-            </div>
-        </div>
-    </div>
 
-    <div class="card mt-5">
-        <div class="card-header bg-primary text-white">
-            <strong>Supermarché proche du Bien</strong>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-6"><b>{{ form_row(monFormulaire.titleSM) }}</b></div>
-                <div class="col-md-6"><b>{{ form_row(monFormulaire.adresseSM) }}</b></div>
+            <div class="card mt-5">
+                <div class="card-header bg-primary text-white">
+                    <strong>Supermarché proche du Bien</strong>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6"><b>{{ form_row(monFormulaire.titleSM) }}</b></div>
+                        <div class="col-md-6"><b>{{ form_row(monFormulaire.adresseSM) }}</b></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12"><b>{{ form_row(monFormulaire.descriptionSM) }}</b></div>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <div class="col-md-12"><b>{{ form_row(monFormulaire.descriptionSM) }}</b></div>
-            </div>
-        </div>
-    </div>
 
-    <div class="card mt-5">
-        <div class="card-header bg-primary text-white">
-            <strong>Restaurant proche du Bien</strong>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-6"><b>{{ form_row(monFormulaire.titleR) }}</b></div>
-                <div class="col-md-6"><b>{{ form_row(monFormulaire.adresseR) }}</b></div>
+            <div class="card mt-5">
+                <div class="card-header bg-primary text-white">
+                    <strong>Restaurant proche du Bien</strong>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6"><b>{{ form_row(monFormulaire.titleR) }}</b></div>
+                        <div class="col-md-6"><b>{{ form_row(monFormulaire.adresseR) }}</b></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12"><b>{{ form_row(monFormulaire.descriptionR) }}</b></div>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <div class="col-md-12"><b>{{ form_row(monFormulaire.descriptionR) }}</b></div>
+        </div>
+    {% else %}
+        <div class="card mt-5">
+            <div class="card-header bg-primary text-white">
+                <strong>Marché proche du Bien</strong>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6"><b>{{ form_row(monFormulaire.titleM) }}</b></div>
+                    <div class="col-md-6"><b>{{ form_row(monFormulaire.adresseM) }}</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12"><b>{{ form_row(monFormulaire.descriptionM) }}</b></div>
+                </div>
             </div>
         </div>
-    </div>
 
+        <div class="card mt-5">
+            <div class="card-header bg-primary text-white">
+                <strong>Etablissement d'enseignement proche du Bien</strong>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6"><b>{{ form_row(monFormulaire.titleS) }}</b></div>
+                    <div class="col-md-6"><b>{{ form_row(monFormulaire.adresseS) }}</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12"><b>{{ form_row(monFormulaire.descriptionS) }}</b></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-5">
+            <div class="card-header bg-primary text-white">
+                <strong>Centre de santé proche du Bien</strong>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6"><b>{{ form_row(monFormulaire.titleH) }}</b></div>
+                    <div class="col-md-6"><b>{{ form_row(monFormulaire.adresseH) }}</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12"><b>{{ form_row(monFormulaire.descriptionH) }}</b></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-5">
+            <div class="card-header bg-primary text-white">
+                <strong>Supermarché proche du Bien</strong>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6"><b>{{ form_row(monFormulaire.titleSM) }}</b></div>
+                    <div class="col-md-6"><b>{{ form_row(monFormulaire.adresseSM) }}</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12"><b>{{ form_row(monFormulaire.descriptionSM) }}</b></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-5">
+            <div class="card-header bg-primary text-white">
+                <strong>Restaurant proche du Bien</strong>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6"><b>{{ form_row(monFormulaire.titleR) }}</b></div>
+                    <div class="col-md-6"><b>{{ form_row(monFormulaire.adresseR) }}</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12"><b>{{ form_row(monFormulaire.descriptionR) }}</b></div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 
     {{ form_widget(monFormulaire) }}
 
@@ -130,8 +223,18 @@
                 {% endfor %}
             </div>
         {% endif %}
+
+    {% if app.request.attributes.get('_route') == 'app_annonces_edit' %}
+        <input type="submit" value="Modifier l'annonce" formnovalidate 
+        class="btn btn-primary btn-block mt-3 mb-5">
+    {% else %}
+        <p class="mt-3 mb-3 pt-2 pb-2 pl-2 pr-2 bg-danger text-white"><span style="font-weight: bold;">Attention : </span>Veuillez bien vérifier les informations relatives au marché, 
+        établissement, supermarché, centre de santé et restaurant. Une fois les données enregistrés, 
+        vous n'aurez plus la possibilité de les modifier.
+        </p>
+        <input type="submit" value="Créer l'annonce" class="btn btn-primary btn-block mt-3 mb-5" formnovalidate>
+    {% endif %}
     
-    <input type="submit" value="{{submitButtonText ?? 'Créer l\'annonce'}}" formnovalidate 
-    class="btn btn-primary btn-block mt-3">
+    
 
 {{ form_end(monFormulaire) }}

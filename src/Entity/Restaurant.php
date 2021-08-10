@@ -84,7 +84,7 @@ class Restaurant
         return $this->descriptionR;
     }
 
-    public function setDescriptionR(string $descriptionR): self
+    public function setDescriptionR(?string $descriptionR): self
     {
         $this->descriptionR = $descriptionR;
 
