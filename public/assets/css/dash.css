@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-
 :root {
-    --main-color: #DD2F6E;
+    --main-color: #2f32dd;
     --color-dark: #1d2231;
     --text-grey: #8390A2;
 }
@@ -67,30 +66,30 @@
     padding-right: 1rem;
 }
 
-#nav-toggle:checked + .sidebar {
+#nav-toggle:checked+.sidebar {
     width: 70px;
 }
 
-#nav-toggle:checked + .sidebar .sidebar-brand,
-#nav-toggle:checked + .sidebar li {
+#nav-toggle:checked+.sidebar .sidebar-brand,
+#nav-toggle:checked+.sidebar li {
     padding-left: 1rem;
     text-align: center;
 }
 
-#nav-toggle:checked + .sidebar li a {
+#nav-toggle:checked+.sidebar li a {
     padding-left: 0rem;
 }
 
-#nav-toggle:checked + .sidebar .sidebar-brand h2 span:last-child, 
-#nav-toggle:checked + .sidebar li a span:last-child {
+#nav-toggle:checked+.sidebar .sidebar-brand h2 span:last-child,
+#nav-toggle:checked+.sidebar li a span:last-child {
     display: none;
 }
 
-#nav-toggle:checked ~ .main-content {
+#nav-toggle:checked~.main-content {
     margin-left: 70px;
 }
 
-#nav-toggle:checked ~ .main-content header{
+#nav-toggle:checked~.main-content header {
     width: calc(100% - 70px);
     left: 70px;
 }
@@ -134,7 +133,7 @@ header label span {
 
 .search-wrapper span {
     display: inline-block;
-    padding: 0rem  1rem;
+    padding: 0rem 1rem;
     font-size: 1.5rem;
 }
 
@@ -196,8 +195,8 @@ main {
 }
 
 .card-single:last-child h1,
-.card-single:last-child  div:first-child span,
-.card-single:last-child  div:last-child span {
+.card-single:last-child div:first-child span,
+.card-single:last-child div:last-child span {
     color: #fff;
 }
 
@@ -302,7 +301,7 @@ tr td:last-child {
 .info h4 {
     font-size: .8rem;
     font-weight: 700;
-    color:#222
+    color: #222
 }
 
 .info small {
@@ -321,38 +320,31 @@ tr td:last-child {
     .sidebar {
         width: 70px;
     }
-    
     .sidebar .sidebar-brand,
     .sidebar li {
         padding-left: 1rem;
         text-align: center;
     }
-    
     .sidebar li a {
         padding-left: 0rem;
     }
-    
-    .sidebar .sidebar-brand h2 span:last-child, 
+    .sidebar .sidebar-brand h2 span:last-child,
     .sidebar li a span:last-child {
         display: none;
     }
-    
     .main-content {
         margin-left: 70px;
     }
-    
-    .main-content header{
+    .main-content header {
         width: calc(100% - 70px);
         left: 70px;
     }
-
 }
 
 @media only screen and (max-width:960px) {
     .cards {
         grid-template-columns: repeat(3, 1fr);
     }
-
     .recent-grid {
         grid-template-columns: 60% 40%;
     }
@@ -362,24 +354,19 @@ tr td:last-child {
     .cards {
         grid-template-columns: repeat(2, 1fr);
     }
-
     .recent-grid {
         grid-template-columns: 100%;
     }
-
     .search-wrapper {
         display: none;
     }
-
     .sidebar {
         left: -100% !important;
     }
-
     header h2 {
         display: flex;
         align-items: center;
     }
-
     header h2 label {
         display: inline-block;
         background: var(--main-color);
@@ -393,49 +380,39 @@ tr td:last-child {
         align-items: center;
         justify-content: center !important;
     }
-
     header h2 span {
         text-align: center;
         padding-left: 0rem;
     }
-
     header h2 {
         font-size: .1.1rem;
     }
-
     .main-content {
         width: 100%;
         margin-left: 0rem;
     }
-
     header {
         width: 100% !important;
         left: 0 !important;
     }
-
-    #nav-toggle:checked + .sidebar {
+    #nav-toggle:checked+.sidebar {
         left: 0 !important;
         z-index: 100;
         width: 345px;
     }
-
-    #nav-toggle:checked + .sidebar .sidebar-brand,
-    #nav-toggle:checked + .sidebar li {
+    #nav-toggle:checked+.sidebar .sidebar-brand,
+    #nav-toggle:checked+.sidebar li {
         padding-left: 2rem;
         text-align: left;
     }
-    
-    
-    #nav-toggle:checked + .sidebar li a {
+    #nav-toggle:checked+.sidebar li a {
         padding-left: 1rem;
     }
-    
-    #nav-toggle:checked + .sidebar .sidebar-brand h2 span:last-child, 
-    #nav-toggle:checked + .sidebar li a span:last-child {
+    #nav-toggle:checked+.sidebar .sidebar-brand h2 span:last-child,
+    #nav-toggle:checked+.sidebar li a span:last-child {
         display: inline;
     }
-
-    #nav-toggle:checked ~ .main-content {
+    #nav-toggle:checked~.main-content {
         margin-left: 0rem !important;
     }
 }
