@@ -15,7 +15,7 @@
                             <div id="caroussel">
                                 <div class="images mw-100 rounded-top">
                                     {% for image in annonce.images %}
-                                        <a href=" {{ path('app_annonces_show', {id: annonce.id}) }} ">
+                                        <a href=" {{ path('app_admin_annonces_sh', {id: annonce.id}) }} ">
                                             <img src="{{ asset('/uploads/annonces/' ~ image.name) }}" 
                                             alt="{{image.name}}" style="width:350px; height:230px;" class="rounded-top"> 
                                         </a>
@@ -25,7 +25,7 @@
                         {% else %}
                             <div class="mw-100 rounded-top overflow-hidden">
                                 {% for image in annonce.images %}
-                                    <a href=" {{ path('app_annonces_show', {id: annonce.id}) }} ">
+                                    <a href=" {{ path('app_admin_annonces_sh', {id: annonce.id}) }} ">
                                         <img src="{{ asset('/uploads/annonces/' ~ image.name) }}" 
                                         alt="{{image.name}}" style="width:350px; height:230px;" class="w-100 "> 
                                     </a>

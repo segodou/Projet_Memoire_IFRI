@@ -78,6 +78,14 @@ class AdminController extends AbstractController
         return $this->render('admin/showAdmin.html.twig', compact('annonce'));
     }
 
+    /**
+     * @Route("/admin/annonces/{id<[0-9]+>}/simple", name="app_admin_annonces_sh", methods="GET")
+     */
+    public function show(Annonces $annonce): Response
+    {
+        return $this->render('admin/showAd.html.twig', compact('annonce'));
+    }
+
      /**
      * @Route("/admin/annonces/{id<[0-9]+>}/approved", name="app_admin_annonces_approved", methods={"GET", "POST"})
      */
