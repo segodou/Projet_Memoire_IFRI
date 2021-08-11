@@ -4,115 +4,124 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-            <title>
-                {% block title %}Welcome!
-                {% endblock %}
-            </title>
-            <link rel="stylesheet" href= "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" >
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+            <title>Dashboard</title>
+
+             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+            <link rel="stylesheet" href="{{asset('assets/css/slider.css')}}">
+            <link rel="stylesheet" href="{{asset('assets/css/app.css')}}">
+
+            <!-- Favicon icon -->
+            <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/dash/images/favicon.png')}}">
+            <!-- Pignose Calender -->
+            <link href="{{asset('assets/dash/plugins/pg-calendar/css/pignose.calendar.min.css')}}" rel="stylesheet">
+            <!-- Chartist -->
+            <link rel="stylesheet" href="{{asset('assets/dash/plugins/chartist/css/chartist.min.css')}}">
+            <link rel="stylesheet" href="{{asset('assets/dash/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css')}}">
+            <!-- Custom Stylesheet -->
+            <link href="{{asset('assets/dash/css/style.css')}}" rel="stylesheet">
+            <link href="{{asset('assets/fontawesome/css/all.css')}}" rel="stylesheet">
 
             {# Run `composer require symfony/webpack-encore-bundle`
                             and uncomment the following Encore helpers to start using Symfony UX #}
             {% block stylesheets %}
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-            <link rel="stylesheet" href="{{asset('assets/css/slider.css')}}">
-            <link rel="stylesheet" href="{{asset('assets/css/dash.css')}}">
-            <link rel="stylesheet" href="{{asset('assets/css/app.css')}}">
+
 
             {% endblock %}
 
-            {% block javascripts %}
+ 
                 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
                 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
-            {% endblock %}
 
 
         </head>
 
 
         <body>
-            {{include('layouts/partials/_flash_messages.html.twig')}}
-            <input type="checkbox" id="nav-toggle">
-            <div class="sidebar">
-                <div class="sidebar-brand">
-                    <h2><span class="lab la-accusoft"></span><span>Administrateur</span></h2>
-                </div>
-        
-                <div class="sidebar-menu">
-                    <ul>
-                        <li>
-                            <a href="{{ path('app_admin_home') }}" class="active"><span class="las la-igloo"></span>
-                            <span>Dashboard</span></a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="las la-users"></span>
-                            <span>Utilisateurs</span></a>
-                        </li>
-                        <li>
-                            <a href="{{ path('app_admin_annonces') }}"><span class="las la-clipboard-list"></span>
-                            <span>Annonces</span></a>
-                        </li>
-                        <li>
-                            <a href=""><span class="las la-shopping-bag"></span>
-                            <span>Taches</span></a>
-                        </li>
-                        <li>
-                            <a href=""><span class="las la-receipt"></span>
-                            <span>Menu</span></a>
-                        </li>
-                        <li>
-                            <a href=""><span class="las la-user-circle"></span>
-                            <span>Menu</span></a>
-                        </li>
-                        <li>
-                            <a href=""><span class="las la-clipboard-list"></span>
-                            <span>Menu</span></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="main-content">
-                <header>
-                    <h2>
-                        <label for="nav-toggle">
-                            <span class="las la-bars"></span>
-                        </label>
-                        Dashboard
-                    </h2>
-        
-                    <div class="search-wrapper">
-                        <span class="las la-search"></span>
-                        <input type="search" placeholder="Search here">
-                    </div>
-        
-                    <div class="user-wrapper">
-                        <a class="nav-link" href="{{ path('app_account') }}">
-                            <img src="{{asset('assets/image/moi.jpg')}}" alt="" width="40px" height="40px">
-                        </a>
-                        <div>
-                            <h4>
-                                <a class="nav-link" href="{{ path('app_logout') }}"><i class="bi bi-box-arrow-left"></i></a>
-                            </h4>
-                            <span>
-                                Admin
-                            </span>
-                        </div>            
-                    </div>
-                </header>
-        
-                <main>
-                    {% if app.request.attributes.get('_route') == 'app_admin_home' %}
-                        {{include('layouts/partials/_cards.html.twig')}}
-                    {% endif %}
+            {{include('layouts/partials/_navbar.html.twig')}}
+            {{include('layouts/partials/_sidebar.html.twig')}}
+                
 
-                    <div class="mes_templates">
+                <!--**********************************
+                    Content body start
+                ***********************************-->
+                <div class="content-body">
+
+                    <div class="container-fluid mt-3">
+                        {% if app.request.attributes.get('_route') == 'app_admin_home' %}
+                            {{include('layouts/partials/_cards.html.twig')}}
+                        {% endif %}
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-12">
+
                         {% block body %}{% endblock %}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
                     </div>
-
-                </main>
+                    <!-- #/ container -->
+                </div>
+                <!--**********************************
+                    Content body end
+                ***********************************-->
+                
+                
+                <!--**********************************
+                    Footer start
+                ***********************************-->
+                <div class="footer">
+                    <div class="copyright">
+                        <p>Copyright &copy; Designed & Developed by Saitama</p>
+                    </div>
+                </div>
+                <!--**********************************
+                    Footer end
+                ***********************************-->
             </div>
-
+            <!--**********************************
+                    Main wrapper end
+            ***********************************-->
         </body>
-    </html>
+
+        
+                <!--**********************************
+                Scripts
+            ***********************************-->
+            <script src="{{asset('assets/dash/plugins/common/common.min.js')}}"></script>
+            <script src="{{asset('assets/dash/js/custom.min.js')}}"></script>
+            <script src="{{asset('assets/dash/js/settings.js')}}"></script>
+            <script src="{{asset('assets/dash/js/gleek.js')}}"></script>
+            <script src="{{asset('assets/dash/js/styleSwitcher.js')}}"></script>
+
+            <!-- Chartjs -->
+            <script src="{{asset('assets/dash/plugins/chart.js/Chart.bundle.min.js')}}"></script>
+            <!-- Circle progress -->
+            <script src="{{asset('assets/dash/plugins/circle-progress/circle-progress.min.js')}}"></script>
+            <!-- Datamap -->
+            <script src="{{asset('assets/dash/plugins/d3v3/index.js')}}"></script>
+            <script src="{{asset('assets/dash/plugins/topojson/topojson.min.js')}}"></script>
+            <script src="./plugins/datamaps/datamaps.world.min.js"></script>
+            <!-- Morrisjs -->
+            <script src="{{asset('assets/dash/plugins/raphael/raphael.min.js')}}"></script>
+            <script src="{{asset('assets/dash/plugins/morris/morris.min.js')}}"></script>
+            <!-- Pignose Calender -->
+            <script src="{{asset('assets/dash/plugins/moment/moment.min.js')}}"></script>
+            <script src="{{asset('assets/dash/plugins/pg-calendar/js/pignose.calendar.min.js')}}"></script>
+            <!-- ChartistJS -->
+            <script src="{{asset('assets/dash/plugins/chartist/js/chartist.min.js')}}"></script>
+            <script src="{{asset('assets/dash/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js')}}"></script>
+
+            <script src="{{asset('assets/dash/js/dashboard/dashboard-1.js')}}"></script>
+
+            {% block javascripts %}
+            {% endblock %}
+
+</html>

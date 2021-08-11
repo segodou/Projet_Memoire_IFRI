@@ -95,6 +95,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $sexe;
 
+    /**
+     * @ORM\Column(type="boolean", options={"default":false})
+     */
+    private $statusDelete;
+
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
@@ -309,6 +314,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setSexe(string $sexe): self
     {
         $this->sexe = $sexe;
+
+        return $this;
+    }
+
+    public function getStatusDelete(): ?bool
+    {
+        return $this->statusDelete;
+    }
+
+    public function setStatusDelete(bool $statusDelete): self
+    {
+        $this->statusDelete = $statusDelete;
 
         return $this;
     }

@@ -123,4 +123,19 @@ class AdminController extends AbstractController
 
         return $this->redirectToRoute('app_admin_annonces');
     }
+
+    /**
+     * @Route("/admin/users", name="app_admin_users")
+     */
+    public function crudUsers(UserRepository $userRepository): Response
+    {       
+        $users = $userRepository->findBy(
+            [   'isVerified' => true, 
+            ], 
+            ['createdAt' => 'DESC']
+        );
+
+        return $this->render('admin/users.html.twig', compact('users'));
+
+    }
 }

@@ -1,0 +1,101 @@
+{% extends 'baseDash.html.twig' %}
+
+{% block title 'Utilisateurs' %}
+
+{% block stylesheets %}
+   <!-- Favicon icon -->
+   <!-- Custom Stylesheet -->
+   <link href="{{asset('assets/dash/plugins/tables/css/datatable/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+            <div class="row page-titles mx-0">
+                <div class="col p-md-0">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
+                    </ol>
+                </div>
+            </div>
+            <!-- row -->
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Mes utilisateurs</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered zero-configuration">
+                                        <thead>
+                                            <tr>
+                                                <th>Nom</th>
+                                                <th>Prénom(s)</th>
+                                                <th>Résidence</th>
+                                                <th>Téléphone</th>
+                                                <th>Sexe</th>
+                                                <th>Date</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for user in users %}
+                                                <tr>
+                                                    <td>{{ user.LastName }}</td>
+                                                    <td>{{ user.firstName }}</td>
+                                                    <td>{{ user.adresse }}</td>
+                                                    <td>{{ user.phone }}</td>
+                                                    <td>{{ user.sexe }}</td>
+                                                    <td>{{ user.annonces|length }}</td>
+                                                    <td>
+                                                        <form action=" {{path('app_admin_user_delete',{id: annonce.id} )}}" method="post" style="display : inline-block;" 
+                                                            onsubmit="return confirm('Etes vous sûre de vouloir supprimer cette annonce ?')">
+                                                            <input type="hidden" name="_token" value="{{csrf_token('deletion' ~ annonce.id)}}">
+                                                            <button class="btn" style="background-color: rgb(128,0,64);"><i class="fa fa-trash"></i></button>
+                                                        </form>
+                                                        <a href="#">
+                                                            <button class="btn btn-info">S</button>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Nom</th>
+                                                <th>Prénom(s)</th>
+                                                <th>Résidence</th>
+                                                <th>Sexe</th>
+                                                <th>Date</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #/ container -->
+        <!--**********************************
+            Content body end
+        ***********************************-->
+        
+
+{% endblock %}
+
+{% block javascripts %}
+    <!--**********************************
+        Scripts
+    ***********************************-->
+
+    <script src="{{asset('assets/dash/plugins/tables/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('assets/dash/plugins/tables/js/datatable/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('assets/dash/plugins/tables/js/datatable-init/datatable-basic.min.js')}}"></script>
+
+{% endblock %}
