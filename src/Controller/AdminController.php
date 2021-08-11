@@ -94,4 +94,20 @@ class AdminController extends AbstractController
 
         return $this->redirectToRoute('app_admin_annonces');
     }
+
+     /**
+     * @Route("/admin/annonces/{id<[0-9]+>}/delete", name="app_admin_annonces_delete")
+     */
+    public function deleteAnnonces(Request $request, EntityManagerInterface $em, Annonces $annonce): Response
+    {
+       
+        if ($this->isCsrfTokenValid('deletion' . $annonce->getId(), $request->request->get('_token'))) {
+            $em->remove($annonce);
+            $em->flush();
+
+            $this->addFlash('info', 'L\'annonce est supprimée avec succès!');
+       }
+
+        return $this->redirectToRoute('app_admin_annonces');
+    }
 }

@@ -169,10 +169,15 @@
 		</div>
 
 			<div class="pl-3 pb-3">
-				<form action="{{path('app_admin_annonces_edit',{id: annonce.id} )}}" method="post" style="display : inline-block;" 
-					onsubmit="return confirm('Etes vous sûre de vouloir d'approuver cette annonce ?')">
+				<form action=" {{path('app_admin_annonces_edit',{id: annonce.id} )}}" method="post" style="display : inline-block;" 
+					onsubmit="return confirm('Etes vous sûre de vouloir de valider cette annonce ?')">
 					<input type="hidden" name="_token" value="{{csrf_token('approved' ~ annonce.id)}}">
 					<button class="btn text-white" style="background-color: rgb(128,0,64);">Approuver</button>
+				</form>
+				<form action=" {{path('app_admin_annonces_delete',{id: annonce.id} )}}" method="post" style="display : inline-block;" 
+					onsubmit="return confirm('Etes vous sûre de vouloir supprimer cette annonce ?')">
+					<input type="hidden" name="_token" value="{{csrf_token('deletion' ~ annonce.id)}}">
+					<button class="btn text-white ml-3" style="background-color: rgb(128,0,64);">Supprimer</button>
 				</form>
 			</div>
 
