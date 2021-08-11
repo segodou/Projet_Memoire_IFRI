@@ -154,7 +154,7 @@ class Annonces
     private $restaurant;
 
     /**
-     * @ORM\Column(type="boolean", options={"default":false})
+     * @ORM\Column(type="boolean", options={"default": "0"})
      */
     private $approved;
 

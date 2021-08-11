@@ -55,6 +55,9 @@ class AnnoncesType extends AbstractType
             ->add('sold', CheckboxType::class, [
                 'label' => 'Vendu'
             ])
+            ->add('approved', CheckboxType::class, [
+                'label' => 'approuver'
+            ])
             // On ajoute le champ "images" dans le formulaire
             // Il n'est pas lié à la base de données (mapped à false)
             ->add('images', FileType::class, [

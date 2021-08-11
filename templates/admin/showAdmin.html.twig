@@ -26,7 +26,7 @@
 			</div>
 
 			<div class='col-md-4'>
-				<h2 class="h2 pl-3 pt-3 text-secondary text-decoration-none font-weight-bold">
+				<h2 class="h2 pl-3 pt-3 text-secondary text-decoration-none font-weight-bold text-break">
 					 {{annonce.title}}
 				</h2>
 				<p class="h2 pl-3 pb-3 text-secondary text-decoration-none">{{annonce.rooms}} pièces - {{annonce.surface}} m2</p>
@@ -169,7 +169,7 @@
 		</div>
 
 			<div class="pl-3 pb-3">
-				<form action=" {{path('app_admin_annonces_edit',{id: annonce.id} )}}" method="post" style="display : inline-block;" 
+				<form action=" {{path('app_admin_annonces_approved',{id: annonce.id} )}}" method="post" style="display : inline-block;" 
 					onsubmit="return confirm('Etes vous sûre de vouloir de valider cette annonce ?')">
 					<input type="hidden" name="_token" value="{{csrf_token('approved' ~ annonce.id)}}">
 					<button class="btn text-white" style="background-color: rgb(128,0,64);">Approuver</button>

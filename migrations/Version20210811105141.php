@@ -10,11 +10,11 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210810204817 extends AbstractMigration
+final class Version20210811105141 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Ajout du champ approved à la table annonce';
+        return '';
     }
 
     public function up(Schema $schema): void

@@ -163,7 +163,7 @@ class AnnoncesController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
             
             // On récupère les images transmises
             $images = $form->get('images')->getData();

@@ -60,7 +60,7 @@ class AdminController extends AbstractController
         $annonces = $annonceRepository->findBy(
             [   'statusAnnonce' => '0', 
                 'sold' => false,
-                'approved' => false,
+                'approved' => '0',
 
             ], 
             ['createdAt' => 'DESC']
@@ -79,7 +79,7 @@ class AdminController extends AbstractController
     }
 
      /**
-     * @Route("/admin/annonces/{id<[0-9]+>}/edit", name="app_admin_annonces_edit", methods={"GET", "POST"})
+     * @Route("/admin/annonces/{id<[0-9]+>}/approved", name="app_admin_annonces_approved", methods={"GET", "POST"})
      */
     public function approved(Request $request, EntityManagerInterface $em, Annonces $annonce): Response
     {
@@ -103,6 +103,11 @@ class AdminController extends AbstractController
        
         if ($this->isCsrfTokenValid('deletion' . $annonce->getId(), $request->request->get('_token'))) {
             $em->remove($annonce);
+            $em->remove($annonce->getMarket());
+            $em->remove($annonce->getHopital());
+            $em->remove($annonce->getSchool());
+            $em->remove($annonce->getSuperMarket());
+            $em->remove($annonce->getRestaurant());
             $em->flush();
 
             $this->addFlash('info', 'L\'annonce est supprimée avec succès!');
