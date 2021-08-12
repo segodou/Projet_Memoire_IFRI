@@ -45,7 +45,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="#" class="site_title"><i class="fa fa-paw"></i> <span>Administrateur</span></a>
+              <a href="{{ path('app_admin_home') }}" class="site_title"><i class="fa fa-paw"></i> <span>Administrateur</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -71,13 +71,13 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Tableau de bord <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Accueil</a></li>
+                      <li><a href="{{ path('app_admin_home') }}">Accueil</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-edit"></i> Menu <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Annonces en attente</a></li>
-                      <li><a href="#">Utilisateurs</a></li>
+                      <li><a href="{{ path('app_admin_annonces') }}">Annonces en attente</a></li>
+                      <li><a href="{{ path('app_admin_users') }}">Utilisateurs</a></li>
                       <li><a href="#">Autres</a></li>
                       <li><a href="#">Autres</a></li>
                       <li><a href="#">Autres</a></li>
