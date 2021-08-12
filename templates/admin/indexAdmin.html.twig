@@ -1,10 +1,10 @@
-{% extends 'baseDash.html.twig' %}
+{% extends 'gent.html.twig' %}
 
-{% block title 'Dashboard' %}
+{% block title 'Tableau de bord' %}
 
 {% block body %}
     {% if annonces|length > 0 %}
-        <h1 class="mb-1 mt-3 text-center text-muted"> {{ pluralize(annonces|length, 'Annonce') }} </h1>
+        <h1 class="text-center text-muted"> {{ pluralize(annonces|length, 'Annonce') }} </h1>
         
         {% for row in annonces|batch(3) %}
             <div class="row mt-5">
