@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Annonces;
+use App\Entity\User;
 use App\Repository\AnnoncesRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -127,15 +128,42 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/users", name="app_admin_users")
      */
-    public function crudUsers(UserRepository $userRepository): Response
+    public function tableUsers(UserRepository $userRepository): Response
     {       
         $users = $userRepository->findBy(
-            [   'isVerified' => true, 
+            [   'isVerified' => true,
+                'statusDelete' => false, 
             ], 
             ['createdAt' => 'DESC']
         );
 
         return $this->render('admin/users.html.twig', compact('users'));
 
+    }
+
+    /**
+     * @Route("/admin/user/{id<[0-9]+>}/delete", name="app_admin_user_delete")
+     */
+    public function deleteUser(Request $request, EntityManagerInterface $em, User $user): Response
+    {
+       
+        if ($this->isCsrfTokenValid('deletion' . $user->getId(), $request->request->get('_token'))) {
+            $user->setStatusDelete(true);
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash('info', 'L\'utilisateur est supprimée avec succès!');
+       }
+
+        return $this->redirectToRoute('app_admin_users');
+    }
+
+    /**
+     * @Route("/admin/user/show/{id<[0-9]+>}", name="app_admin_user_show")
+     */
+    public function showUser(User $user): Response
+    {
+
+        return $this->render('admin/showUser.html.twig', compact('user'));
     }
 }

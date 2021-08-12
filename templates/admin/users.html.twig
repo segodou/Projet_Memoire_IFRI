@@ -13,15 +13,6 @@
         <!--**********************************
             Content body start
         ***********************************-->
-            <div class="row page-titles mx-0">
-                <div class="col p-md-0">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
-                    </ol>
-                </div>
-            </div>
-            <!-- row -->
 
             <div class="container-fluid">
                 <div class="row">
@@ -38,27 +29,30 @@
                                                 <th>Résidence</th>
                                                 <th>Téléphone</th>
                                                 <th>Sexe</th>
-                                                <th>Date</th>
-                                                <th>Actions</th>
+                                                <th>T.P.</th>
+                                                <th>Action1</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {% for user in users %}
                                                 <tr>
-                                                    <td>{{ user.LastName }}</td>
+                                                    <td>{{ user.lastName }}</td>
                                                     <td>{{ user.firstName }}</td>
                                                     <td>{{ user.adresse }}</td>
                                                     <td>{{ user.phone }}</td>
                                                     <td>{{ user.sexe }}</td>
                                                     <td>{{ user.annonces|length }}</td>
                                                     <td>
-                                                        <form action=" {{path('app_admin_user_delete',{id: annonce.id} )}}" method="post" style="display : inline-block;" 
-                                                            onsubmit="return confirm('Etes vous sûre de vouloir supprimer cette annonce ?')">
-                                                            <input type="hidden" name="_token" value="{{csrf_token('deletion' ~ annonce.id)}}">
-                                                            <button class="btn" style="background-color: rgb(128,0,64);"><i class="fa fa-trash"></i></button>
+                                                        <form action=" {{path('app_admin_user_delete',{id: user.id} )}}" method="post" style="display : inline-block;" 
+                                                            onsubmit="return confirm('Etes vous sûre de vouloir supprimer {{user.firstName}} ?')">
+                                                            <input type="hidden" name="_token" value="{{csrf_token('deletion' ~ user.id)}}">
+                                                            <button class="btn btn-white" style="color: red; font-weight: bold; font-size: 20px;"><i class="fa fa-trash"></i></button>
                                                         </form>
-                                                        <a href="#">
-                                                            <button class="btn btn-info">S</button>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{path('app_admin_user_show',{id: user.id} )}}">
+                                                            <button class="btn btn-white" style="color: blue; font-weight: bold; font-size: 20px;"><i class="fa fa-info-circle"></i></button>
                                                         </a>
                                                     </td>
                                                 </tr>
