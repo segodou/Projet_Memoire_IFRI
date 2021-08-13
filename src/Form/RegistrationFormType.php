@@ -23,9 +23,6 @@ class RegistrationFormType extends AbstractType
             ->add('firstName')
             ->add('lastName')
             ->add('phone')
-            ->add('statusDelete', CheckboxType::class, [
-                'label' => 'approuver'
-            ])
             ->add('sexe',ChoiceType::class, [
                 'placeholder' => 'Choisir votre sexe',
                 'choices' => [

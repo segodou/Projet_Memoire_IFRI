@@ -323,7 +323,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->statusDelete;
     }
 
-    public function setStatusDelete(bool $statusDelete): self
+    public function setStatusDelete(?bool $statusDelete): self
     {
         $this->statusDelete = $statusDelete;
 

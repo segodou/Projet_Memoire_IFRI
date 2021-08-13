@@ -412,7 +412,7 @@ class Annonces
         return $this->approved;
     }
 
-    public function setApproved(bool $approved): self
+    public function setApproved(?bool $approved): self
     {
         $this->approved = $approved;
 
