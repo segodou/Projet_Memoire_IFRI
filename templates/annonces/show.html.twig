@@ -41,6 +41,32 @@
 				<p class="pl-3 pb-3 text-muted"><small>Submitted {{annonce.createdAt|ago}} </small></p>
 				<p class="pl-3 pb-3"><a href="#" class=" btn btn-primary">Contacter l'annonceur</a></p>
 
+
+				<!-- Button trigger modal -->
+				<button class="btn btn-primary ml-3"  data-toggle="modal" data-target="#exampleModalLabel">
+				Contacter l'annonceur
+				</button>
+				 <!-- Modal -->
+				 <div class="modal fade" id="exampleModalLabel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				 <div class="modal-dialog modal-dialog-scrollable">
+				 <div class="modal-content">
+					 <div class="modal-header">
+					 <h5 class="modal-title" id="exampleModal1Label">Formulaire de contact</h5>
+					 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						 <span aria-hidden="true">&times;</span>
+					 </button>
+					 </div>
+					 <div class="modal-body">
+						 	{{include('annonces/contact.html.twig')}}
+					 </div>
+					 <div class="modal-footer">
+					 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+					 </div>
+				 </div>
+				 </div>
+				 </div>
+
+				
 				<p class="pl-3 pb-3 pr-3">
 					<b>
 						<a href="http://maps.google.com?q={{annonce.location}}">Cliquer ici <i class="bi bi-geo-alt-fill"></i></a>

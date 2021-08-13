@@ -1,0 +1,16 @@
+<div class= "bg-white rounded shadow">
+    {{ form_start(form) }}
+        <div class="row">
+            <div class="col-md-6">{{ form_row(form.firstname) }}</div>
+            <div class="col-md-6">{{ form_row(form.lastname) }}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">{{ form_row(form.phone) }}</div>
+            <div class="col-md-6">{{ form_row(form.email) }}</div>
+        </div>
+    {{ form_rest(form) }}
+        <div class="form-group">
+            <button class="btn btn-primary">Envoyer</button>
+        </div>
+    {{ form_end(form) }}
+</div>

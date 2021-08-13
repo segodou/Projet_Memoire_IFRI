@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Annonces;
+use App\Entity\Contact;
 use App\Entity\Hopital;
 use App\Entity\Images;
 use App\Entity\Market;
@@ -10,6 +11,8 @@ use App\Entity\Restaurant;
 use App\Entity\School;
 use App\Entity\SuperMarket;
 use App\Form\AnnoncesType;
+use App\Form\ContactType;
+use App\Notification\ContactNotification;
 use App\Repository\AnnoncesRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,6 +22,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 class AnnoncesController extends AbstractController
 {
@@ -146,11 +151,34 @@ class AnnoncesController extends AbstractController
 
 
     /**
-     * @Route("/annonces/{id<[0-9]+>}", name="app_annonces_show", methods="GET")
+     * @Route("/annonces/{id<[0-9]+>}", name="app_annonces_show")
      */
-    public function show(Annonces $annonce): Response
+    public function show(Annonces $annonce, Request $request, MailerInterface $mailer): Response
     {
-        return $this->render('annonces/show.html.twig', compact('annonce'));
+        $contact = new Contact;
+        $contact->setAnnonce($annonce);
+        $form = $this->createForm(ContactType::class, $contact);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+
+            $message= (new Email())
+                ->from($contact->getEmail())
+                ->to('noreply@gmail.com')
+                ->subject('vous aviez reçu un email')
+                ->text('Sender : ' .$contact->getEmail().\PHP_EOL.$contact->getMessage(), 'text/plain');
+            $mailer->send($message);
+
+            $this->addFlash('success', 'Votre email a été envoyé avec succès!');
+            return $this->redirectToRoute('app_annonces_show', [ 'id' => $annonce->getId()]);
+        }
+
+        return $this->render('annonces/show.html.twig', [
+            'annonce' => $annonce,
+            'form'    => $form->createView()
+        ]);
     }
 
     /**
