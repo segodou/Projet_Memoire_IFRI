@@ -88,7 +88,7 @@ class AdminController extends AbstractController
             ['createdAt' => 'DESC']
         );
 
-        return $this->render('admin/accueil.html.twig', compact('annonces'));
+        return $this->render('admin/attente.html.twig', compact('annonces'));
 
     }
 
@@ -97,7 +97,7 @@ class AdminController extends AbstractController
      */
     public function showAnnonces(Annonces $annonce): Response
     {
-        return $this->render('admin/showAdmin.html.twig', compact('annonce'));
+        return $this->render('admin/showAttente.html.twig', compact('annonce'));
     }
 
     /**
